@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>test</title>
-    <url>/2021/10/07/test/</url>
+    <title>test2</title>
+    <url>/2021/10/07/test2/</url>
     <content><![CDATA[<p>test</p>
 <span id="more"></span>
 
 <p>$$<br>\sum_{i=1}^{n}\frac{1}{i}<br>$$</p>
 ]]></content>
       <tags>
-        <tag>test</tag>
+        <tag>test2</tag>
       </tags>
   </entry>
   <entry>
