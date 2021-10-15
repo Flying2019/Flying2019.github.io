@@ -21,15 +21,15 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"flying2019.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content=".underline-input {     border: none;     border-bottom: #099 groove 1px;     outline: none;     transition-delay: 0s;     transition-duration: 0.25s;     transition-timing-function: ease-in-out;">
+<meta name="description" content="&#x2F;&#x2F;DES加密     function encryptByDES(message, key){         var keyHex &#x3D; CryptoJS.enc.Utf8.parse(key);         var encrypted &#x3D; CryptoJS.DES.encrypt(message, keyHex, {             mode: CryptoJS.m">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Flying2018">
 <meta property="og:url" content="https://flying2019.github.io/decrypt/index.html">
 <meta property="og:site_name" content="Flying2018">
-<meta property="og:description" content=".underline-input {     border: none;     border-bottom: #099 groove 1px;     outline: none;     transition-delay: 0s;     transition-duration: 0.25s;     transition-timing-function: ease-in-out;">
+<meta property="og:description" content="&#x2F;&#x2F;DES加密     function encryptByDES(message, key){         var keyHex &#x3D; CryptoJS.enc.Utf8.parse(key);         var encrypted &#x3D; CryptoJS.DES.encrypt(message, keyHex, {             mode: CryptoJS.m">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-10-14T09:20:39.898Z">
-<meta property="article:modified_time" content="2021-10-14T09:20:39.898Z">
+<meta property="article:published_time" content="2021-10-15T09:33:53.737Z">
+<meta property="article:modified_time" content="2021-10-15T09:33:53.737Z">
 <meta property="article:author" content="Flying2018">
 <meta name="twitter:card" content="summary">
 
@@ -237,86 +237,7 @@
       
       
       <div class="post-body">
-          <style>
-    .underline-input {
-    border: none;
-    border-bottom: #099 groove 1px;
-    outline: none;
-    transition-delay: 0s;
-    transition-duration: 0.25s;
-    transition-timing-function: ease-in-out;
-    }
-
-    .underline-input:focus-visible {
-    border-bottom: #0cc groove 1px;
-    transition-delay: 0s;
-    transition-duration: 0.25s;
-    transition-timing-function: ease-in-out;
-    }
-
-    .gradual-button {
-    padding: 0.5em 1em;
-    text-align: center;
-    border-radius: 0px;
-    border-width: 0px;
-    background-color: #ddd;
-    transition-delay: 0s;
-    transition-duration: 0.25s;
-    transition-timing-function: ease-in-out;
-    }
-
-    .gradual-button:hover {
-    cursor: pointer;
-    background-color: #bbb;
-    transition-delay: 0s;
-    transition-duration: 0.25s;
-    transition-timing-function: ease-in-out;
-    }
-    pre { line-height: 125%; }
-    td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
-    span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
-    td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
-    span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
-    .codehilite .hll { background-color: #ffffcc }
-    .codehilite { background: #ffffff; }
-    .codehilite .c { color: #008000 } /* Comment */
-    .codehilite .err { border: 1px solid #FF0000 } /* Error */
-    .codehilite .k { color: #0000ff } /* Keyword */
-    .codehilite .ch { color: #008000 } /* Comment.Hashbang */
-    .codehilite .cm { color: #008000 } /* Comment.Multiline */
-    .codehilite .cp { color: #0000ff } /* Comment.Preproc */
-    .codehilite .cpf { color: #008000 } /* Comment.PreprocFile */
-    .codehilite .c1 { color: #008000 } /* Comment.Single */
-    .codehilite .cs { color: #008000 } /* Comment.Special */
-    .codehilite .ge { font-style: italic } /* Generic.Emph */
-    .codehilite .gh { font-weight: bold } /* Generic.Heading */
-    .codehilite .gp { font-weight: bold } /* Generic.Prompt */
-    .codehilite .gs { font-weight: bold } /* Generic.Strong */
-    .codehilite .gu { font-weight: bold } /* Generic.Subheading */
-    .codehilite .kc { color: #0000ff } /* Keyword.Constant */
-    .codehilite .kd { color: #0000ff } /* Keyword.Declaration */
-    .codehilite .kn { color: #0000ff } /* Keyword.Namespace */
-    .codehilite .kp { color: #0000ff } /* Keyword.Pseudo */
-    .codehilite .kr { color: #0000ff } /* Keyword.Reserved */
-    .codehilite .kt { color: #2b91af } /* Keyword.Type */
-    .codehilite .s { color: #a31515 } /* Literal.String */
-    .codehilite .nc { color: #2b91af } /* Name.Class */
-    .codehilite .ow { color: #0000ff } /* Operator.Word */
-    .codehilite .sa { color: #a31515 } /* Literal.String.Affix */
-    .codehilite .sb { color: #a31515 } /* Literal.String.Backtick */
-    .codehilite .sc { color: #a31515 } /* Literal.String.Char */
-    .codehilite .dl { color: #a31515 } /* Literal.String.Delimiter */
-    .codehilite .sd { color: #a31515 } /* Literal.String.Doc */
-    .codehilite .s2 { color: #a31515 } /* Literal.String.Double */
-    .codehilite .se { color: #a31515 } /* Literal.String.Escape */
-    .codehilite .sh { color: #a31515 } /* Literal.String.Heredoc */
-    .codehilite .si { color: #a31515 } /* Literal.String.Interpol */
-    .codehilite .sx { color: #a31515 } /* Literal.String.Other */
-    .codehilite .sr { color: #a31515 } /* Literal.String.Regex */
-    .codehilite .s1 { color: #a31515 } /* Literal.String.Single */
-    .codehilite .ss { color: #a31515 } /* Literal.String.Symbol */
-</style>
-<script src="https://cdn.bootcss.com/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+          <script src="https://cdn.bootcss.com/crypto-js/3.1.9-1/crypto-js.min.js"></script>
 <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script> -->
 <script src="../js/md5.js"></script>
 <script>
