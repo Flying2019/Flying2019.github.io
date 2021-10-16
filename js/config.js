@@ -69,8 +69,9 @@ if (!window.NexT) window.NexT = {};
 
 
 function save(str,val){localStorage.setItem(str,val);}
+function erase(str){localStorage.removeItem(str);location.reload();}
 function load(str){return localStorage.getItem(str);}
-function loadColor(list)
+function loadBackgroundColor(list)
 {
     if(load('color')!=undefined)
     {
@@ -84,7 +85,7 @@ function loadColor(list)
         }
     }
 }
-function changeColor(id,list)
+function changeBackgroundColor(id,list)
 {
     let s=document.getElementById(id).value;
     s='#'+s;
@@ -97,4 +98,4 @@ function changeColor(id,list)
     }
     save('color',s);
 }
-window.onload = loadColor(['.header','.footer']);
+window.onload = loadBackgroundColor(['.header','.footer']);
