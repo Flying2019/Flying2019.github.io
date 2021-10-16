@@ -80,7 +80,7 @@ function loadBackgroundColor(list)
         for(var i=0;i<cssRule.length;i++)
         {
             for(let j of list)
-            if(String(cssRule[i].selectorText).indexOf(j)!=-1)
+            if(j.test(String(cssRule[i].selectorText)))
             {cssRule[i].style.background=s;break;}
         }
     }
@@ -93,9 +93,9 @@ function changeBackgroundColor(id,list)
     for(var i=0;i<cssRule.length;i++)
     {
         for(let j of list)
-        if(String(cssRule[i].selectorText).indexOf(j)!=-1)
+        if(String(cssRule[i].selectorText).search(j)!=-1)
         {cssRule[i].style.background=s;break;}
     }
     save('color',s);
 }
-window.onload = loadBackgroundColor(['.header','.footer']);
+window.onload = loadBackgroundColor([/^.header$/,/^.footer$/]);
