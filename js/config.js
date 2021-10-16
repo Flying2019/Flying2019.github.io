@@ -70,6 +70,7 @@ if (!window.NexT) window.NexT = {};
 var Backgroundlist=[/^main$/,/underline/];
 var Themelist=[/^.header$/,/^.footer$/];
 var Contentlist=[/.post-body/,/.post-title/,/button/];
+var Slidelist=[/.sidebar/];
 
 function save(str,val){localStorage.setItem(str,val);}
 function erase(str){localStorage.removeItem(str);location.reload();}
@@ -123,6 +124,14 @@ function changeThemeColor(id)
     save('tcolor',s);
     loadBackgroundColor('tcolor',Themelist);
 }
+function changeSlideColor(id)
+{
+    let s=document.getElementById(id).value;
+    s='#'+s;
+    save('slidecolor',s);
+    loadBackgroundColor('slidecolor',Slidelist);
+}
 window.onload = loadBackgroundColor('bcolor',Backgroundlist);
 window.onload = loadContentColor('color',Contentlist);
 window.onload = loadBackgroundColor('tcolor',Themelist);
+window.onload = loadBackgroundColor('slidecolor',Slidelist);
