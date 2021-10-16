@@ -10,7 +10,7 @@
   --brand-hover-color: #222;
   --table-row-odd-bg-color: #f9f9f9;
   --table-row-hover-bg-color: #f5f5f5;
-  --menu-item-bg-color: #ddd;
+  --menu-item-bg-color: rgba(200,200,200,0.6);
   --theme-color: #222;
   --btn-default-bg: transparent;
   --btn-default-color: var(--link-color);
@@ -2855,7 +2855,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #25228f;
+  background: #c8bb83;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2900,7 +2900,7 @@ hr {
   text-align: center;
   border-radius: 0px;
   border-width: 0px;
-  background-color: #ddd;
+  background-color: rgba(190,190,190,0.6);
   transition-delay: 0s;
   transition-duration: 0.25s;
   transition-timing-function: ease-in-out;
@@ -2908,7 +2908,7 @@ hr {
 }
 .gradual-button:hover {
   cursor: pointer;
-  background-color: #bbb;
+  background-color: rgba(138,138,138,0.7);
   transition-delay: 0s;
   transition-duration: 0.25s;
   transition-timing-function: ease-in-out;
