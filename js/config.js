@@ -67,15 +67,18 @@ if (!window.NexT) window.NexT = {};
 
 // Custom Javascript
 
+var Backgroundlist=[/^main$/,/underline/];
+var Themelist=[/^.header$/,/^.footer$/];
+var Contentlist=[/.post-body/,/.post-title/,/button/];
 
 function save(str,val){localStorage.setItem(str,val);}
 function erase(str){localStorage.removeItem(str);location.reload();}
 function load(str){return localStorage.getItem(str);}
-function loadBackgroundColor(list)
+function loadBackgroundColor(str,list)
 {
-    if(load('bcolor')!=undefined)
+    if(load(str)!=undefined)
     {
-        var s=load('bcolor');
+        var s=load(str);
         var cssRule=document.styleSheets[0].cssRules;
         for(var i=0;i<cssRule.length;i++)
         {
@@ -85,11 +88,11 @@ function loadBackgroundColor(list)
         }
     }
 }
-function loadContentColor(list)
+function loadContentColor(str,list)
 {
-    if(load('color')!=undefined)
+    if(load(str)!=undefined)
     {
-        var s=load('color');
+        var s=load(str);
         var cssRule=document.styleSheets[0].cssRules;
         for(var i=0;i<cssRule.length;i++)
         {
@@ -99,19 +102,27 @@ function loadContentColor(list)
         }
     }
 }
-function changeBackgroundColor(id,list)
+function changeBackgroundColor(id)
 {
     let s=document.getElementById(id).value;
     s='#'+s;
     save('bcolor',s);
-    loadBackgroundColor(list);
+    loadBackgroundColor('bcolor',Backgroundlist);
 }
-function changeContentColor(id,list)
+function changeContentColor(id)
 {
     let s=document.getElementById(id).value;
     s='#'+s;
     save('color',s);
-    loadContentColor(list);
+    loadContentColor('color',Contentlist);
 }
-window.onload = loadBackgroundColor([/^.header$/,/^.footer$/]);
-window.onload = loadContentColor([/.post-body/,/.post-title/,/button/]);
+function changeThemeColor(id)
+{
+    let s=document.getElementById(id).value;
+    s='#'+s;
+    save('tcolor',s);
+    loadBackgroundColor('tcolor',Themelist);
+}
+window.onload = loadBackgroundColor('bcolor',Backgroundlist);
+window.onload = loadContentColor('color',Contentlist);
+window.onload = loadBackgroundColor('tcolor',Themelist);
