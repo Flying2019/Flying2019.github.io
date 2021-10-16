@@ -64,3 +64,37 @@ if (!window.NexT) window.NexT = {};
     variableConfig = {};
   });
 })();
+
+// Custom Javascript
+
+
+function save(str,val){localStorage.setItem(str,val);}
+function load(str){return localStorage.getItem(str);}
+function loadColor(list)
+{
+    if(load('color')!=undefined)
+    {
+        var s=load('color');
+        var cssRule=document.styleSheets[0].cssRules;
+        for(var i=0;i<cssRule.length;i++)
+        {
+            for(let j of list)
+            if(String(cssRule[i].selectorText).indexOf(j)!=-1)
+            {cssRule[i].style.background=s;break;}
+        }
+    }
+}
+function changeColor(id,list)
+{
+    let s=document.getElementById(id).value;
+    s='#'+s;
+    var cssRule=document.styleSheets[0].cssRules;
+    for(var i=0;i<cssRule.length;i++)
+    {
+        for(let j of list)
+        if(String(cssRule[i].selectorText).indexOf(j)!=-1)
+        {cssRule[i].style.background=s;break;}
+    }
+    save('color',s);
+}
+window.onload = loadColor(['.header','.footer']);
