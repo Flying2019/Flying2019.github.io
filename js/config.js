@@ -71,65 +71,72 @@ var Backgroundlist=[/^main$/,/underline/];
 var Themelist=[/^.header$/,/^.footer$/];
 var Contentlist=[/.post-body/,/.post-title/,/button/];
 var Slidelist=[/.sidebar/];
+var alltype=['bcolor','tcolor','color','slidecolor']
 
 function save(str,val){localStorage.setItem(str,val);}
 function erase(str){localStorage.removeItem(str);location.reload();}
+function eraseall()
+{
+  for(let v of alltype)
+    localStorage.removeItem(v);
+  location.reload();
+}
 function load(str){return localStorage.getItem(str);}
 function loadBackgroundColor(str,list)
 {
-    if(load(str)!=undefined)
+  if(load(str)!=undefined)
+  {
+    var s=load(str);
+    var cssRule=document.styleSheets[0].cssRules;
+    for(var i=0;i<cssRule.length;i++)
     {
-        var s=load(str);
-        var cssRule=document.styleSheets[0].cssRules;
-        for(var i=0;i<cssRule.length;i++)
-        {
-            for(let j of list)
-            if(j.test(String(cssRule[i].selectorText)))
-            {cssRule[i].style.background=s;break;}
-        }
+      for(let j of list)
+      if(j.test(String(cssRule[i].selectorText)))
+      {cssRule[i].style.background=s;break;}
     }
+  }
 }
 function loadContentColor(str,list)
 {
-    if(load(str)!=undefined)
+  if(load(str)!=undefined)
+  {
+    var s=load(str);
+    var cssRule=document.styleSheets[0].cssRules;
+    for(var i=0;i<cssRule.length;i++)
     {
-        var s=load(str);
-        var cssRule=document.styleSheets[0].cssRules;
-        for(var i=0;i<cssRule.length;i++)
-        {
-            for(let j of list)
-            if(j.test(String(cssRule[i].selectorText)))
-            {cssRule[i].style.color=s;break;}
-        }
+      for(let j of list)
+      if(j.test(String(cssRule[i].selectorText)))
+      {cssRule[i].style.color=s;break;}
     }
+  }
 }
 function changeBackgroundColor(id)
 {
-    let s=document.getElementById(id).value;
-    s='#'+s;
-    save('bcolor',s);
-    loadBackgroundColor('bcolor',Backgroundlist);
+  let s=document.getElementById(id).value;
+  s='#'+s;
+  save('bcolor',s);
+  loadBackgroundColor('bcolor',Backgroundlist);
 }
 function changeContentColor(id)
 {
-    let s=document.getElementById(id).value;
-    s='#'+s;
-    save('color',s);
-    loadContentColor('color',Contentlist);
+  let s=document.getElementById(id).value;
+  s='#'+s;
+  save('color',s);
+  loadContentColor('color',Contentlist);
 }
 function changeThemeColor(id)
 {
-    let s=document.getElementById(id).value;
-    s='#'+s;
-    save('tcolor',s);
-    loadBackgroundColor('tcolor',Themelist);
+  let s=document.getElementById(id).value;
+  s='#'+s;
+  save('tcolor',s);
+  loadBackgroundColor('tcolor',Themelist);
 }
 function changeSlideColor(id)
 {
-    let s=document.getElementById(id).value;
-    s='#'+s;
-    save('slidecolor',s);
-    loadBackgroundColor('slidecolor',Slidelist);
+  let s=document.getElementById(id).value;
+  s='#'+s;
+  save('slidecolor',s);
+  loadBackgroundColor('slidecolor',Slidelist);
 }
 window.onload = loadBackgroundColor('bcolor',Backgroundlist);
 window.onload = loadContentColor('color',Contentlist);
