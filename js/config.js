@@ -73,9 +73,9 @@ function erase(str){localStorage.removeItem(str);location.reload();}
 function load(str){return localStorage.getItem(str);}
 function loadBackgroundColor(list)
 {
-    if(load('color')!=undefined)
+    if(load('bcolor')!=undefined)
     {
-        var s=load('color');
+        var s=load('bcolor');
         var cssRule=document.styleSheets[0].cssRules;
         for(var i=0;i<cssRule.length;i++)
         {
@@ -85,17 +85,33 @@ function loadBackgroundColor(list)
         }
     }
 }
+function loadContentColor(list)
+{
+    if(load('color')!=undefined)
+    {
+        var s=load('color');
+        var cssRule=document.styleSheets[0].cssRules;
+        for(var i=0;i<cssRule.length;i++)
+        {
+            for(let j of list)
+            if(j.test(String(cssRule[i].selectorText)))
+            {cssRule[i].style.color=s;break;}
+        }
+    }
+}
 function changeBackgroundColor(id,list)
 {
     let s=document.getElementById(id).value;
     s='#'+s;
-    var cssRule=document.styleSheets[0].cssRules;
-    for(var i=0;i<cssRule.length;i++)
-    {
-        for(let j of list)
-        if(String(cssRule[i].selectorText).search(j)!=-1)
-        {cssRule[i].style.background=s;break;}
-    }
+    save('bcolor',s);
+    loadBackgroundColor(list);
+}
+function changeContentColor(id,list)
+{
+    let s=document.getElementById(id).value;
+    s='#'+s;
     save('color',s);
+    loadContentColor(list);
 }
 window.onload = loadBackgroundColor([/^.header$/,/^.footer$/]);
+window.onload = loadContentColor([/.post-body/,/.post-title/,/button/]);
