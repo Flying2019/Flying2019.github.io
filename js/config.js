@@ -67,7 +67,7 @@ if (!window.NexT) window.NexT = {};
 
 // Custom Javascript
 
-var Backgroundlist=[/^main$/,/underline/];
+var Backgroundlist=[/^main$/,/underline/,/^body$/];
 var Themelist=[/^.header$/,/^.footer$/];
 var Contentlist=[/.post-body/,/.post-title/,/button/];
 var Slidelist=[/.sidebar/];
