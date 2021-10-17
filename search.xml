@@ -298,4 +298,45 @@
         <tag>idea</tag>
       </tags>
   </entry>
+  <entry>
+    <title>2019-2020 Winter Petrozavodsk Camp, Day 8</title>
+    <url>/2021/10/17/gym103261/</url>
+    <content><![CDATA[<p>和 Clovers 一起打，被带飞了/ll。</p>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a><a href="https://codeforces.com/gym/103261">链接</a></h2><span id="more"></span>
+
+<h2 id="G-Petr’s-Algorithm"><a href="#G-Petr’s-Algorithm" class="headerlink" title="G. Petr’s Algorithm"></a>G. Petr’s Algorithm</h2><h2 id="F-Face-Recognition-Algorithm"><a href="#F-Face-Recognition-Algorithm" class="headerlink" title="F. Face Recognition Algorithm"></a>F. Face Recognition Algorithm</h2><h2 id="H-Greedy-Algorithm"><a href="#H-Greedy-Algorithm" class="headerlink" title="H. Greedy Algorithm"></a>H. Greedy Algorithm</h2><p>签到题</p>
+<h2 id="I-Euclid’s-Algorithm"><a href="#I-Euclid’s-Algorithm" class="headerlink" title="I. Euclid’s Algorithm"></a>I. Euclid’s Algorithm</h2><p>考虑拆式子。<br>$$<br>(a+d)^k-a^k=\sum_{i=1}^{k}\binom{k}{i}d^ia^{k-i}<br>$$</p>
+<p>需要保证约数 $x$ 满足 $\forall i\in[1,k],\binom{k}{i+1}d^i\mid x$ 成立。否则随便调整一下 $x$ 就不合法了。只要每次取 $\gcd(d,k)$ ，然后将 $d$ 除掉即可。</p>
+<p>用 python 就不用高精了。</p>
+<h2 id="L-Not-Our-Problem"><a href="#L-Not-Our-Problem" class="headerlink" title="L. Not Our Problem"></a>L. Not Our Problem</h2><p>超过三个 $-1$ 显然无解。</p>
+<p>对于两个 $-1$ 的情况，可以转化成 $x\leq X,y\leq Y,xy\min(x,y)\leq C$ 的形式。</p>
+<p>将询问 $(X,Y)$ 离线，可以发现 $\min(x,y)$ 只有 $10^6$ 级别，直接枚举 $\min(x,y)$，对符合条件的询问贡献即可。</p>
+<p>复杂度 $O((n+\sqrt[3]{C})\log C)$。</p>
+<h2 id="C-StalinSort-Algorithm"><a href="#C-StalinSort-Algorithm" class="headerlink" title="C. StalinSort Algorithm"></a>C. StalinSort Algorithm</h2><p>为了方便令 $p_{n+1}=n+1,p_0=0$。</p>
+<p>可以将操作想象成一个栈和一个寄存器。如果当前元素小于栈顶直接删除，否则如果大于寄存器强制将寄存器入栈，否则可以选择交换寄存器。</p>
+<p>令 $g_i$ 表示 $i$ 向后第一个比 $i$ 大的点，$f_i$ 表示点 $i$ 为栈顶时的结果。显然当 $i$ 为栈顶时一开始寄存器就是 $g_i$。考虑当 $i$ 作为栈顶时，区间 $[g_i,g_{g_i})$ 且大于 $p_i$ 的点都可以在栈顶为 $i$ 情况下作为新的寄存器。</p>
+<p>那么有 $f_i+1\rightarrow f_j,j\in[g_i,g_{g_i}),a_j\in[a_i,n]$。显然是一个矩形加、单点查。显然 $g_i&gt;i$，而且 $[i,g_i)$ 不存在 $a_j&gt;a_i$ 的 $j$。所以可以把 $g_i$ 的左限制去掉。</p>
+<p>赛时是用 cdq 分治，每次将左边的贡献加到右边，而右边的贡献就可以离线然后从右往左扫描线，因为是后缀取 $\max$ 所以可以树状数组，复杂度 $O(n\log^2 n)$。</p>
+<p>赛后发现自己是个小丑，直接线段树就好了。复杂度 $O(n\log n)$。</p>
+<h2 id="B-String-Algorithm"><a href="#B-String-Algorithm" class="headerlink" title="B. String Algorithm"></a>B. String Algorithm</h2><p>考虑根号分治。</p>
+<p>设置阈值 $B$，对于 $k&gt;B$，考虑暴力计算，复杂度 $\displaystyle\sum_{i=B}^{n}\left(\frac{n}{i}\right)^2$，算一算是 $O(\frac{n^2}{B})$。</p>
+<p>对于 $k\leq B$，考虑只有 $B$ 个，暴力将每个字符串每一位枚举，将其替换为 $?$，复杂度 $O(nB)$。</p>
+<p>取 $B=\sqrt{n}$，复杂度 $O(n\sqrt{n})$。常数极大。</p>
+<h2 id="E-Binary-Search-Algorithm"><a href="#E-Binary-Search-Algorithm" class="headerlink" title="E. Binary Search Algorithm"></a>E. Binary Search Algorithm</h2><p>首先看到求最小值，还有加入删除，查询至多 $2\log n$ 个点的，想到用堆。</p>
+<p>但是直接二叉堆，会发现删除有问题。因为一般的堆删除都是转化成单点加 $\inf$，然后下推。但是下推过程是一个动态查询的过程，而这里要一次性给出询问，很难处理。</p>
+<p>考虑使用可以合并的堆，而且要求不是均摊复杂度。这里用左偏树，斐波那契堆不知道可不可行。</p>
+<p>考虑每次合并只需要知道两条右儿子链的相对顺序。这样每次插入/删除前先将这两条链查询出来，然后正常合并即可。这样每次恰好询问 $2\log n$。</p>
+<h2 id="A-Um-nik’s-Algorithm"><a href="#A-Um-nik’s-Algorithm" class="headerlink" title="A. Um_nik’s Algorithm"></a>A. Um_nik’s Algorithm</h2><p>被卡常了。</p>
+<p>考虑一个结论：网络流跑 $k$ 次 dinic，至少能得到 $\frac k{k+1}$ 的答案。具体可以反证增广路长度。</p>
+<p>然后直接跑 dinic 即可。复杂度 $O(20n)$。</p>
+<h2 id="K-Interactive-Algorithm"><a href="#K-Interactive-Algorithm" class="headerlink" title="K. Interactive Algorithm"></a>K. Interactive Algorithm</h2><p>可以发现 shuffle 一个序列期望答案是 $\frac{n-1}n$，所以 shuffle 之后 $0$ 或者 $1$ 的概率极大。</p>
+<p>考虑用增量法，每次找到两个相邻的合并，合并之后就将他们粘一起，这样规模 $-1$。</p>
+<p>显然有一个 $O(n^2)$ 做法是：每次 shuffle 直到结果为 $1$，然后枚举分界点翻转两边的序列再次询问，可以发现分开正确答案的分界点结果最小，然后合并该分界点即可。</p>
+<p>有一个比较牛逼的优化：考虑每次二分，将左边的区间 shuffle，如果正确的分界点在右边，那么无论如何答案都不会为 $0$。所以如果 shuffle $10$ 次仍然不为 $0$ 就可以认为分界点在右边。这样是 $O(n\log^2 n)$ 级别的，可以通过。</p>
+<p>事实上有一个非常暴力的做法：可以发现 $0$ 的概率很大，而 $0$ 意味着该序列相邻的数对都不合法。每个数对出现在序列中的概率是 $\frac 1n$，考虑到交互库不是自适应的，所以最后剩下大概率是一条链。</p>
+<h2 id="D-FFT-Algorithm"><a href="#D-FFT-Algorithm" class="headerlink" title="D. FFT Algorithm"></a>D. FFT Algorithm</h2><h3 id="不会"><a href="#不会" class="headerlink" title="不会"></a><font color=red>不会</font></h3><h2 id="J-Closest-Pair-Algorithm"><a href="#J-Closest-Pair-Algorithm" class="headerlink" title="J. Closest Pair Algorithm"></a>J. Closest Pair Algorithm</h2><h3 id="不会-1"><a href="#不会-1" class="headerlink" title="不会"></a><font color=red>不会</font></h3>]]></content>
+      <tags>
+        <tag>gym</tag>
+      </tags>
+  </entry>
 </search>
