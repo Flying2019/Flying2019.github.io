@@ -135,24 +135,27 @@
 <h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><ul>
 <li>$\text{per}(s)$：$s$ 的最小周期。$\text{Per}(s)$：$s$ 所有周期组成集合。</li>
 <li>$\text{Pre}(s)/\text{Suf}(s)$：$s$ 前缀/后缀集合。</li>
-<li>$\text{Cir}(s)$ $s$ 所有循环同构串集合。</li>
-<li>$\text{Lyn}$ 所有 Lyndon Word 集合。</li>
-<li>$\text{Pal}$ 所有回文串集合。</li>
-<li>$\text{Pow}^k$ 所有 $k$ 次方串集合。</li>
+<li>$\text{Sub}(s)$：$s$ 所有子串的集合。</li>
+<li>$\text{Cir}(s)$：$s$ 所有循环同构串集合。</li>
+<li>$\text{Runs}(s)$：$s$ 所有 $\text{Runs}$ 集合。</li>
+<li>$\text{Lyn}$：所有 Lyndon Word 集合。</li>
+<li>$\text{Pal}$：所有回文串集合。</li>
+<li>$\text{Pow}^k$：所有 $k$ 次方串集合。</li>
+<li>以上所有集合都是字符串集合。</li>
+<li>$\text{Len}(S)$ 表示字符串集合 $S$ 所有字符串总长度。</li>
 </ul>
 <h3 id="简写"><a href="#简写" class="headerlink" title="简写"></a>简写</h3><ul>
+<li>$\text{Pow}$ 表示所有 $k\in Z,k\geq 2$，$\text{Pow}^k$ 的并。</li>
 <li>$\text{suf}_i(s)$：$s$ 从 $i$ 开始的后缀。$\text{pre}_i(s)$ 同理。</li>
 <li>若 $x\in \mathbb{Z}$，则 $x\in \text{Per}(s)$ 等价于 $s[:x]\in\text{Per}(s)$，$\text{Pal}$ 等同理。</li>
 <li>$\text{PalPre}(s)$ 等价于 $\text{Pal}\cap\text{Pre}(s)$，其余同理。</li>
 </ul>
+<h2 id="经典结论"><a href="#经典结论" class="headerlink" title="经典结论"></a>经典结论</h2><ol>
+<li>若 $p,q\in\text{Per}(s)$，且 $p+q-\gcd(p,q)\leq |s|$，则 $\gcd(p,q)\in\text{Per}(s)$。</li>
+<li>$\text{Sub}(s)$ 中本原平方串个数为 $O(|s|\log |s|)$。</li>
+<li>$\text{Runs}(s)$ 的所有指数之和为 $O(n)$。</li>
+</ol>
 <h2 id="一些结论"><a href="#一些结论" class="headerlink" title="一些结论"></a>一些结论</h2><ol>
-<li><p>若 $p,q\in\text{Per}(s)$，且 $p+q-\gcd(p,q)\leq |s|$，则 $\gcd(p,q)\in\text{Per}(s)$。</p>
- <details>
- <summary>证明</summary>
- 这个其实叫 Period Lemma。
-
-<p> 网上搜一搜都有证明。</p>
- </details></li>
 <li><p>若 $s\in \text{PalPow}^k$，则 $\sqrt[k]s\in\text{Pal}$。</p>
  <details>
  <summary>证明</summary>
@@ -167,8 +170,43 @@
 <p> $\forall x\in[1,2p-q],\ s_x=s_{p-x}=s_{q-p+x}$，那么 $s[p+1:q]$ 是一个回文串。</p>
 <p> 那么 $s[1:2p-q]$ 也是一个回文串。</p>
  </details></li>
-<li><p>还没写</p>
-</li>
+<li><p>删去 $\text{PalPre}(s)$ 前 $\sqrt n$ 与后 $\sqrt n$ 个后剩下所有元素构成一个等差数列。</p>
+ <details>
+ <summary>证明</summary>
+
+<p> 考虑假设删去前 $B$ 个元素与后 $B$ 个元素，最优构造一定是构造 $B+2$ 个 $\texttt{a}$ 然后构造一个 $\texttt{b}$，最后再复制 $B$ 遍。</p>
+<p> 可以发现这种构造下至少要 $B^2$ 的字符串。</p>
+ </details></li>
+<li><p>若 $s\not\in \text{Pow}$，$\text{Cir}(s)$ 中至多有 $2$ 个串是回文串。</p>
+ <details>
+ <summary>证明</summary>
+
+<p> 一种方法当然是暴力推，但事实上有些困难。</p>
+<p> 有一种很巧妙的方法：将 $s$ 看做是一个定义在圆上的离散函数。那么循环串为回文串等价于该函数的对称轴。</p>
+<p> 有两条不同对称轴的函数一定为周期函数，无论其是否为离散函数。</p>
+<p> 故 $s$ 至多只有两条重合的对称轴。</p>
+ </details></li>
+<li><p>$\text{Len}(\text{Runs}(s))=O(n\log n)$。</p>
+ <details>
+ <summary>证明</summary>
+ 
+<p> 根据 $\text{Runs}$ 的理论，任意两个 Lyndon Root 不交。</p>
+<p> 所以容易发现对于串 $s$ 用如下方式递归构造：</p>
+<ul>
+<li>假设长度为 $l$ 的串总长度为 $F(l)$。</li>
+<li>找到最长的 Lyndon Root $t$ 对应的 Runs，将序列划分成若干段。</li>
+<li>假设该 $\text{Runs}$ 指数为 $k$，那么总长度为 $tk$，剩下若干段长度为 $kF(t)+F(n-kt)$，故 $F(n)=kF(t)+F(n-kt),k\geq 2$。</li>
+</ul>
+<p> 可以证明当 $k=2$ 时取最长为 $O(n\log n)$。</p>
+ </details></li>
+<li><p>$|\text{Pow}^2\text{Sub}(s)|=O(|s|)$。</p>
+ <details>
+ <summary>证明</summary>
+ 
+<p> 考虑用类似于 $6$ 的方法证明。</p>
+<p> 一个 $\text{Run}$ $(l,r,p)$ 中至多只有 $\lfloor\frac{r-l+1}{p}\rfloor$ 个平方串，故 $\text{Pow}^2$ 串总长度不超过 $\text{Run}$ 总长度。</p>
+<p> 而一个 $\text{Runs}$ 递归构造时有所有段全等，故 $F(n)=F(t)+F(n-kt),k\geq 2$。总长度为 $O(|s|)$。</p>
+ </details></li>
 </ol>
 <h2 id="一些猜想"><a href="#一些猜想" class="headerlink" title="一些猜想"></a>一些猜想</h2>]]></content>
       <tags>
