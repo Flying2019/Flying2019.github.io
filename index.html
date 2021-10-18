@@ -248,10 +248,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-10-18 22:11:50 / 修改时间：22:12:44" itemprop="dateCreated datePublished" datetime="2021-10-18T22:11:50+08:00">2021-10-18</time>
+      <time title="创建时间：2021-10-18 22:11:50" itemprop="dateCreated datePublished" datetime="2021-10-18T22:11:50+08:00">2021-10-18</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-10-19 07:11:58" itemprop="dateModified" datetime="2021-10-19T07:11:58+08:00">2021-10-19</time>
+      </span>
 
   
 </div>
@@ -263,28 +269,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="M-Discrete-Logarithm-is-a-Joke"><a href="#M-Discrete-Logarithm-is-a-Joke" class="headerlink" title="M. Discrete Logarithm is a Joke"></a>M. Discrete Logarithm is a Joke</h2><h2 id="J-Increasing-or-Decreasing"><a href="#J-Increasing-or-Decreasing" class="headerlink" title="J. Increasing or Decreasing"></a>J. Increasing or Decreasing</h2><h2 id="G-Remove-the-Prime"><a href="#G-Remove-the-Prime" class="headerlink" title="G. Remove the Prime"></a>G. Remove the Prime</h2><h2 id="I-Trade"><a href="#I-Trade" class="headerlink" title="I. Trade"></a>I. Trade</h2><p>签到题。</p>
-<h2 id="A-Assignment-Problem"><a href="#A-Assignment-Problem" class="headerlink" title="A. Assignment Problem"></a>A. Assignment Problem</h2><p>直接暴力 dfs 就好了，毛估估一下复杂度 $O(2^{2m}m+n)$。</p>
-<h2 id="E-Smol-Vertex-Cover"><a href="#E-Smol-Vertex-Cover" class="headerlink" title="E. Smol Vertex Cover"></a>E. Smol Vertex Cover</h2><p>首先显然有 $C\geq M$，所以只需要判断是否有 $C=M$ 或 $C=M+1$ 即可。</p>
-<p>$M$ 可以用带花树求出。对于 $C=M$ 可以发现一条边两段至少有一个在点集里，考虑对于匹配的点建 2-sat 求解即可。对于 $C=M+1$ 暴力枚举额外选的一个点，然后再跑 2-sat 即可。</p>
-<p>复杂度 $O(nm)$。</p>
-<h2 id="C-Multiple"><a href="#C-Multiple" class="headerlink" title="C. Multiple?"></a>C. Multiple?</h2><p>结论：答案为 $\binom{n-1}{k-1}\varphi(n)$。</p>
-<p>考虑一个性质：至少有一种数出现次数超过 $\frac n2$。证明：假设非众数数字个数为 $t$，将 $t$ 中数字两两求和，至多少有 $\min{t,\lfloor\frac{n-k}2\rfloor}$ 种不同的数。</p>
-<p>那么这种数 $x$ 必须有 $(x,n)=1$。考虑令所有数乘上 $x^{-1}$，这样众数就变成 $1$ 了。</p>
-<p>容易发现这样要求剩下 $\frac n2-k$ 个数的和不能超过 $\frac n2$，否则一定不合法。</p>
-<p>可以发现去掉至少有 $\frac n2$ 个 $1$ 的限制，总共 $\frac 34 n$ 个数的和不能超过 $n$ 同样有至少 $\frac n2$ 个 $1$。</p>
-<p>所以最后就是一个插板，组合数暴力计算可以通过。</p>
-<h2 id="B-Lockout-vs-tourist"><a href="#B-Lockout-vs-tourist" class="headerlink" title="B. Lockout vs tourist"></a>B. Lockout vs tourist</h2><p>枚举当前已经选掉哪些点，从后往前，这样可以知道当前如果和对手选一样的结果，期望会是多少。</p>
-<p>令 $B_i$ 为与对手选了一样的之后的期望，令 $q_i$ 为对方决策为 $i$ 的期望。在 $q_i$ 没有限制的情况下，根据纳什均衡容易得到：存在常数 $k$ 满足<br>$$<br>\forall i,A_i+q_i(B_i-A_i)=k\<br>$$<br>根据纳什均衡，$k$ 即最大收益。<br>$$<br>q_i=\frac{A_i-k}{A_i-B_i}<br>$$</p>
-<p>$$<br>\sum q_i=1\Longrightarrow \sum\frac{A_i-k}{A_i-B_i}=1<br>$$</p>
-<p>$$<br>k=\frac{\sum\frac{A_i}{A_i-B_i}-1}{\sum\frac{1}{A_i-B_i}}<br>$$</p>
-<p>因为 $q_i$ 有不为负的限制，所以最后如果 $A_i\leq k$，那么直接放弃之后的所有点（换句话说对手不会去管这些点）。如果 $A_i\leq k,B_i\geq A_i$，那么对手放了还不如不放，同样会放弃，不过此时应该令 $k=A_i$。</p>
-<p>复杂度 $O(2^nn\log n)$。</p>
-<h2 id="L-Extreme-Wealth"><a href="#L-Extreme-Wealth" class="headerlink" title="L. Extreme Wealth"></a>L. Extreme Wealth</h2><p>考虑 dp，用 $f_{i,j}$ 表示还有 $i$ 个红色和 $j$ 个蓝色的期望倍率，不妨假设 $i&lt;j$。假设当前钱数是 $1$，赌了蓝色 $x$ 的钱（负数表示赌红色），期望收益是：<br>$$<br>\frac{j}{i+j}f_{i,j-1}(1+x)+\frac{i}{i+j}f_{i-1,j}(1-x)<br>$$<br>要么 $x=-1$ 要么 $x=1$。<del>（细思极恐）</del></p>
-<p>算一算发现决策没有影响。换句话说一直摸鱼直到袋子里只有一种颜色的球然后 all in 即可。</p>
-<p>所以最后贡献就是<br>$$<br>\frac{2^{n+m}}{\binom{n+m}{n}}<br>$$<br>正经做法：考虑 $n=m$ 时可以斯特林公式近似，对于其余情况可以发现每 $\sqrt V$ 至少 $\times 2$，所以直接暴力乘过去即可。</p>
-<p>暴力做法：<br>$$<br>\frac{2^{n+m}}{\binom{n+m}{n}}=e^{(n+m)\ln2+\ln{n!}+\ln{m!}+\ln{(n+m)!}}<br>$$<br>$\ln{n!}$ 有一个非常牛逼的近似。直接用 python 计算即可。</p>
-
+          <h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a><a target="_blank" rel="noopener" href="https://codeforces.com/gym/103260">链接</a></h2><p>完全被 Clovers 带飞了。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/18/gym103260/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

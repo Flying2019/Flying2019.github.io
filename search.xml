@@ -440,7 +440,10 @@
   <entry>
     <title>2020-2021 Winter Petrozavodsk Camp, Day 5</title>
     <url>/2021/10/18/gym103260/</url>
-    <content><![CDATA[<h2 id="M-Discrete-Logarithm-is-a-Joke"><a href="#M-Discrete-Logarithm-is-a-Joke" class="headerlink" title="M. Discrete Logarithm is a Joke"></a>M. Discrete Logarithm is a Joke</h2><h2 id="J-Increasing-or-Decreasing"><a href="#J-Increasing-or-Decreasing" class="headerlink" title="J. Increasing or Decreasing"></a>J. Increasing or Decreasing</h2><h2 id="G-Remove-the-Prime"><a href="#G-Remove-the-Prime" class="headerlink" title="G. Remove the Prime"></a>G. Remove the Prime</h2><h2 id="I-Trade"><a href="#I-Trade" class="headerlink" title="I. Trade"></a>I. Trade</h2><p>签到题。</p>
+    <content><![CDATA[<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a><a href="https://codeforces.com/gym/103260">链接</a></h2><p>完全被 Clovers 带飞了。</p>
+<span id="more"></span>
+
+<h2 id="M-Discrete-Logarithm-is-a-Joke"><a href="#M-Discrete-Logarithm-is-a-Joke" class="headerlink" title="M. Discrete Logarithm is a Joke"></a>M. Discrete Logarithm is a Joke</h2><h2 id="J-Increasing-or-Decreasing"><a href="#J-Increasing-or-Decreasing" class="headerlink" title="J. Increasing or Decreasing"></a>J. Increasing or Decreasing</h2><h2 id="G-Remove-the-Prime"><a href="#G-Remove-the-Prime" class="headerlink" title="G. Remove the Prime"></a>G. Remove the Prime</h2><h2 id="I-Trade"><a href="#I-Trade" class="headerlink" title="I. Trade"></a>I. Trade</h2><p>签到题。</p>
 <h2 id="A-Assignment-Problem"><a href="#A-Assignment-Problem" class="headerlink" title="A. Assignment Problem"></a>A. Assignment Problem</h2><p>直接暴力 dfs 就好了，毛估估一下复杂度 $O(2^{2m}m+n)$。</p>
 <h2 id="E-Smol-Vertex-Cover"><a href="#E-Smol-Vertex-Cover" class="headerlink" title="E. Smol Vertex Cover"></a>E. Smol Vertex Cover</h2><p>首先显然有 $C\geq M$，所以只需要判断是否有 $C=M$ 或 $C=M+1$ 即可。</p>
 <p>$M$ 可以用带花树求出。对于 $C=M$ 可以发现一条边两段至少有一个在点集里，考虑对于匹配的点建 2-sat 求解即可。对于 $C=M+1$ 暴力枚举额外选的一个点，然后再跑 2-sat 即可。</p>
