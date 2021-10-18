@@ -30,11 +30,11 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://flying2019.github.io/image/1.png">
 <meta property="article:published_time" content="2021-10-17T08:47:46.000Z">
-<meta property="article:modified_time" content="2021-10-17T10:34:42.004Z">
+<meta property="article:modified_time" content="2021-10-18T03:08:46.356Z">
 <meta property="article:author" content="Flying2018">
 <meta property="article:tag" content="test">
-<meta property="article:tag" content="字符串">
 <meta property="article:tag" content="idea">
+<meta property="article:tag" content="字符串">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://flying2019.github.io/image/1.png">
 
@@ -92,7 +92,7 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-info-circle fa-fw"></i>关于</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
         <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
         <li class="menu-item menu-item-加密"><a href="/decrypt/" rel="section"><i class="fa fa-lock fa-fw"></i>加密</a></li>
@@ -168,7 +168,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -259,10 +259,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-10-17 16:47:46 / 修改时间：18:34:42" itemprop="dateCreated datePublished" datetime="2021-10-17T16:47:46+08:00">2021-10-17</time>
+      <time title="创建时间：2021-10-17 16:47:46" itemprop="dateCreated datePublished" datetime="2021-10-17T16:47:46+08:00">2021-10-17</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-10-18 11:08:46" itemprop="dateModified" datetime="2021-10-18T11:08:46+08:00">2021-10-18</time>
+      </span>
 
   
 </div>
@@ -293,7 +299,7 @@
 <p>换句话说，我们只需要贡献所有不存在长度 $&gt;\frac{|s|}2$ 的回文串后缀的后缀 $s$ 即可。这样的 $s$ 最多 $O(\log n)$ 个，具体求出可以直接在回文树上预处理。</p>
 <p>复杂度 $O(n\log^2 n)$。</p>
 <h2 id="3-O-n-log-n"><a href="#3-O-n-log-n" class="headerlink" title="3. $O(n\log n)$"></a>3. $O(n\log n)$</h2><p>对于任意字符串 $s$，如果 $s$ 不是整循环串，那么 $s$ 的所有循环位移中至多只有 $2$ 个是回文串。可以想象一个定义在圆上的函数，如果有两条不重合的对称轴，那么一定是一个周期函数。</p>
-<p>考虑原串的 Runs $(l,r,p)$，显然 $s[l:l+p-1]$ 不是整循环串（Runs 的定义），那么至多只有 $2$ 个**极长整循环周期为 $p$ **的回文串。</p>
+<p>考虑原串的 Runs $(l,r,p)$，显然 $s[l:l+p-1]$ 不是整循环串（Runs 的定义），那么至多只有 $2$ 个<strong>极长整循环周期为 $p$</strong> 的回文串。</p>
 <p>可以发现上述算法中，每个<strong>极长整循环</strong>的回文串只有在循环节处会产生 $O(\log n)$ 的处理代价。而所有极长整循环的回文串指数之和不超过 Runs 的指数之和的两倍，故是 $O(n)$ 的。</p>
 <p>所以上面那个算法其实是 $O(n\log n)$ 的。</p>
 
@@ -306,8 +312,8 @@
     <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/test/" rel="tag"># test</a>
-              <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag"># 字符串</a>
               <a href="/tags/idea/" rel="tag"># idea</a>
+              <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag"># 字符串</a>
           </div>
 
         
