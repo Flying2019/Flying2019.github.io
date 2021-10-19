@@ -143,19 +143,33 @@
 <li>$\text{Pow}^k$：所有 $k$ 次方串集合。</li>
 <li>以上所有集合都是字符串集合。</li>
 <li>$\text{Len}(S)$ 表示字符串集合 $S$ 所有字符串总长度。</li>
+<li>$\text{Min}(S)$ 表示字符串集合 $S$ 中字典序最小的串，$\text{Max}(S)$ 同理。</li>
 </ul>
 <h3 id="简写"><a href="#简写" class="headerlink" title="简写"></a>简写</h3><ul>
 <li>$\text{Pow}$ 表示所有 $k\in Z,k\geq 2$，$\text{Pow}^k$ 的并。</li>
 <li>$\text{suf}_i(s)$：$s$ 从 $i$ 开始的后缀。$\text{pre}_i(s)$ 同理。</li>
 <li>若 $x\in \mathbb{Z}$，则 $x\in \text{Per}(s)$ 等价于 $s[:x]\in\text{Per}(s)$，$\text{Pal}$ 等同理。</li>
 <li>$\text{PalPre}(s)$ 等价于 $\text{Pal}\cap\text{Pre}(s)$，其余同理。</li>
+<li>$\text{MinPre}(s)$ 表示最长前缀，其余同理。</li>
 </ul>
-<h2 id="经典结论"><a href="#经典结论" class="headerlink" title="经典结论"></a>经典结论</h2><ol>
+<h2 id="经典结论"><a href="#经典结论" class="headerlink" title="经典结论"></a>经典结论</h2><details>
+<summary>经典结论</summary>
+
+<ol>
 <li>若 $p,q\in\text{Per}(s)$，且 $p+q-\gcd(p,q)\leq |s|$，则 $\gcd(p,q)\in\text{Per}(s)$。</li>
 <li>$\text{Sub}(s)$ 中本原平方串个数为 $O(|s|\log |s|)$。</li>
 <li>$\text{Runs}(s)$ 的所有指数之和为 $O(n)$。</li>
 </ol>
-<h2 id="一些结论"><a href="#一些结论" class="headerlink" title="一些结论"></a>一些结论</h2><ol>
+</details>
+
+<h2 id="已经证明的结论"><a href="#已经证明的结论" class="headerlink" title="已经证明的结论"></a>已经证明的结论</h2><h3 id="关于回文串"><a href="#关于回文串" class="headerlink" title="关于回文串"></a>关于回文串</h3><ol>
+<li><p>若 $s\in \text{PalPow}^k$，则 $\sqrt[k]s\in\text{Pal}$。</p>
+ <details>
+ <summary>证明</summary>
+
+<p> 令 $t=\sqrt[k]s$。</p>
+<p> 若 $k$ 为奇数有 $t=t^R$，若 $k$ 为偶数则有 $t^2\in\text{Pal}$ 都可以推出 $t\in\text{Pal}$。</p>
+ </details></li>
 <li><p>若 $s\in \text{PalPow}^k$，则 $\sqrt[k]s\in\text{Pal}$。</p>
  <details>
  <summary>证明</summary>
@@ -170,13 +184,6 @@
 <p> $\forall x\in[1,2p-q],\ s_x=s_{p-x}=s_{q-p+x}$，那么 $s[p+1:q]$ 是一个回文串。</p>
 <p> 那么 $s[1:2p-q]$ 也是一个回文串。</p>
  </details></li>
-<li><p>删去 $\text{PalPre}(s)$ 前 $\sqrt n$ 与后 $\sqrt n$ 个后剩下所有元素构成一个等差数列。</p>
- <details>
- <summary>证明</summary>
-
-<p> 考虑假设删去前 $B$ 个元素与后 $B$ 个元素，最优构造一定是构造 $B+2$ 个 $\texttt{a}$ 然后构造一个 $\texttt{b}$，最后再复制 $B$ 遍。</p>
-<p> 可以发现这种构造下至少要 $B^2$ 的字符串。</p>
- </details></li>
 <li><p>若 $s\not\in \text{Pow}$，$\text{Cir}(s)$ 中至多有 $2$ 个串是回文串。</p>
  <details>
  <summary>证明</summary>
@@ -186,6 +193,17 @@
 <p> 有两条不同对称轴的函数一定为周期函数，无论其是否为离散函数。</p>
 <p> 故 $s$ 至多只有两条重合的对称轴。</p>
  </details></li>
+</ol>
+<h3 id="关于border"><a href="#关于border" class="headerlink" title="关于border"></a>关于border</h3><ol>
+<li><p>删去 $\text{PalPre}(s)$ 前 $\sqrt n$ 与后 $\sqrt n$ 个后剩下所有元素构成一个等差数列。</p>
+ <details>
+ <summary>证明</summary>
+
+<p> 考虑假设删去前 $B$ 个元素与后 $B$ 个元素，最优构造一定是构造 $B+2$ 个 $\texttt{a}$ 然后构造一个 $\texttt{b}$，最后再复制 $B$ 遍。</p>
+<p> 可以发现这种构造下至少要 $B^2$ 的字符串。</p>
+ </details></li>
+</ol>
+<h3 id="关于-Runs-Lyndon串-平方串"><a href="#关于-Runs-Lyndon串-平方串" class="headerlink" title="关于 Runs/Lyndon串/平方串"></a>关于 Runs/Lyndon串/平方串</h3><ol>
 <li><p>$\text{Len}(\text{Runs}(s))=O(n\log n)$。</p>
  <details>
  <summary>证明</summary>
@@ -208,7 +226,7 @@
 <p> 而一个 $\text{Runs}$ 递归构造时有所有段全等，故 $F(n)=F(t)+F(n-kt),k\geq 2$。总长度为 $O(|s|)$。</p>
  </details></li>
 </ol>
-<h2 id="一些猜想"><a href="#一些猜想" class="headerlink" title="一些猜想"></a>一些猜想</h2>]]></content>
+<h2 id="猜想"><a href="#猜想" class="headerlink" title="猜想"></a>猜想</h2>]]></content>
       <tags>
         <tag>idea</tag>
         <tag>字符串</tag>
@@ -468,5 +486,21 @@
       <tags>
         <tag>gym</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>gym102155</title>
+    <url>/2021/10/19/gym102155/</url>
+    <content><![CDATA[<p>因为某些奇怪的事，又被 Clovers 带飞了。</p>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a><a href="https://codeforces.com/gym/102155">链接</a></h2><h2 id="A-Ability-Draft"><a href="#A-Ability-Draft" class="headerlink" title="A. Ability Draft"></a>A. Ability Draft</h2><p>神必大模拟。</p>
+<h2 id="C-Block-Stock-and-Two-Smoking-Galaxy-Notes"><a href="#C-Block-Stock-and-Two-Smoking-Galaxy-Notes" class="headerlink" title="C. Block, Stock and Two Smoking Galaxy Notes"></a>C. Block, Stock and Two Smoking Galaxy Notes</h2><h2 id="K-Hiding-a-Tree"><a href="#K-Hiding-a-Tree" class="headerlink" title="K. Hiding a Tree"></a>K. Hiding a Tree</h2><h2 id="H-Hiding-a-Tree"><a href="#H-Hiding-a-Tree" class="headerlink" title="H. Hiding a Tree"></a>H. Hiding a Tree</h2><p>签到题。</p>
+<h2 id="F-Shuffle"><a href="#F-Shuffle" class="headerlink" title="F. Shuffle"></a>F. Shuffle</h2><p>考虑一次操作显然是一个置换，所以一定会构成一个环。</p>
+<p>对于环等价于环同构，直接 exKMP/Hash 即可。</p>
+<p>考虑环长的限制，显然本质不同环长是 $O(\sqrt n)$ 的，对于长度相同的环一起暴力推，复杂度 $O(n\sqrt n)$。</p>
+<p>事实上可以证明环长一定是 $\phi(n-1)$ 的约数，所以不同长度的环数就更小了。</p>
+<h2 id="G-Piecewise-Linearity"><a href="#G-Piecewise-Linearity" class="headerlink" title="G. Piecewise Linearity"></a>G. Piecewise Linearity</h2><p>条件有两个，一个是最左端与最右端右斜率相反，另一个是不能加常数。</p>
+<p>第二个很难判断？其实直接强行构造即可。最后如果构造不出来即无解。</p>
+<h2 id="I-≤-or-≥"><a href="#I-≤-or-≥" class="headerlink" title="I.  ≤ or ≥"></a>I.  ≤ or ≥</h2><p>考虑设置权重函数 $f(k)=3^k$，总权重为 $S$，带权二分，可以发现每次相当于选择一个较小一边除以 $3$，这样至少使权重减少 $\frac 13S$。</p>
+<p>毛估估一下大概就是 $50$ 左右。</p>
+]]></content>
   </entry>
 </search>
