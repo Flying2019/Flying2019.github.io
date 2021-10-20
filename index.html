@@ -158,7 +158,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -216,6 +216,94 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://flying2019.github.io/2021/10/20/gym102992/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my.jpg">
+      <meta itemprop="name" content="Flying2018">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Flying2018">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/10/20/gym102992/" class="post-title-link" itemprop="url">2020-2021 ACM-ICPC, Asia Nanjing Regional Contest</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-10-20 14:44:22 / 修改时间：14:44:55" itemprop="dateCreated datePublished" datetime="2021-10-20T14:44:22+08:00">2021-10-20</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a><a target="_blank" rel="noopener" href="https://codeforces.com/gym/102992">链接</a></h2><p>打垮了，又被 Clovers 带飞了。</p>
+<h2 id="K-Co-prime-Permutation"><a href="#K-Co-prime-Permutation" class="headerlink" title="K. Co-prime Permutation"></a>K. Co-prime Permutation</h2><h2 id="L-Let’s-Play-Curling"><a href="#L-Let’s-Play-Curling" class="headerlink" title="L. Let’s Play Curling"></a>L. Let’s Play Curling</h2><h2 id="E-Evil-Coordinate"><a href="#E-Evil-Coordinate" class="headerlink" title="E. Evil Coordinate"></a>E. Evil Coordinate</h2><h2 id="M-Monster-Hunter"><a href="#M-Monster-Hunter" class="headerlink" title="M. Monster Hunter"></a>M. Monster Hunter</h2><p>签到题。</p>
+<h2 id="F-Fireworks"><a href="#F-Fireworks" class="headerlink" title="F. Fireworks"></a>F. Fireworks</h2><p>设每做 $k$ 个处理一次，那么有代价 $w=nk+m+\frac{w}{(1-p)^k}$，移项得 $w=\frac{nk+m}{1-(1-p)^k}$，容易发现这是一个单峰函数，直接三分即可。</p>
+<h2 id="H-Harmonious-Rectangle"><a href="#H-Harmonious-Rectangle" class="headerlink" title="H. Harmonious Rectangle"></a>H. Harmonious Rectangle</h2><p>诈骗题。首先当然用总方案减去不合法方案。也就是现在要统计不存在这样一个矩形的染色。</p>
+<p>手模一下发现 $n=6,m=6$ 很难构造出来，打个暴力发现真的无解。</p>
+<p>容易发现 $n&gt;8$ 时只有 $m=1$ 有解，所以特判 $n,m$ 中有一个 $1$ 的情况，对于其余 $n,m\leq 8$ 直接爆搜即可。</p>
+<p>复杂度 $O(能过)$。</p>
+<h2 id="J-Just-Another-Game-of-Stones"><a href="#J-Just-Another-Game-of-Stones" class="headerlink" title="J. Just Another Game of Stones"></a>J. Just Another Game of Stones</h2><p>吉司机线段树板子题，没什么好说的。</p>
+<h2 id="A-Ah-It’s-Yesterday-Once-More"><a href="#A-Ah-It’s-Yesterday-Once-More" class="headerlink" title="A. Ah, It’s Yesterday Once More"></a>A. Ah, It’s Yesterday Once More</h2><p>构造题。打一个 checker 可以发现最长直径往往会成为限制。换句话说应该构造一张图使两点间最长距离尽可能长。</p>
+<p>第一想法显然是绕圈圈，但这样只能达到 $15%$ 的成功率，因为这种情况下墙的数量太多了。关注到题目只要求四联通构成树即可，所以先往左上再往左下这样走更优。可以得到 $30%$ 的成功率。</p>
+<h2 id="D-Degree-of-Spanning-Tree"><a href="#D-Degree-of-Spanning-Tree" class="headerlink" title="D. Degree of Spanning Tree"></a>D. Degree of Spanning Tree</h2><p>考虑随意取一个生成树，此时度数大于 $\frac n2$ 的点至多只有一个，不断调整直到满足条件。注意此时可能会出现另一个度数大于 $\frac n2$ 的点，但这两个点一定相邻，特判这条边即可。</p>
+<p>实际上考虑正常生成树，不过每次加入要求度数不能超过 $\frac n2$，可以发现随机序列下正确率不低，多 shuffle 几次就过了。</p>
+<h2 id="I-Interested-in-Skiing"><a href="#I-Interested-in-Skiing" class="headerlink" title="I. Interested in Skiing"></a>I. Interested in Skiing</h2><p>考虑总共只有 $2n$ 个点，暴力两两判断能否连边，如果可以连边就连单向边，边权为其斜率。这样可以得到一张图，而答案就是其最小瓶颈路。</p>
+<p>直接二分答案然后 dfs 即可。复杂度 $O(n^3+n^2\log n)$。</p>
+<h2 id="C-Certain-Scientific-Railgun"><a href="#C-Certain-Scientific-Railgun" class="headerlink" title="C. Certain Scientific Railgun"></a>C. Certain Scientific Railgun</h2><p>嘴巴一下，没有写过。</p>
+<p>考虑最后实际上是选择一个矩形，使得所有点在矩形严格上下左右方向，代价是矩形周长减去到某个端点的曼哈顿距离。</p>
+<p>考虑枚举下边界，维护每个上边界对应的左右边界之差。可以发现下边界上移过程中的代价是限制左右边界不能小于某个值，可以发现对应到上边界就是删去某些上边界，可以用 set 维护。</p>
+<p>具体细节有一点恶心。</p>
+<h2 id="G-Go"><a href="#G-Go" class="headerlink" title="G. Go"></a>G. Go</h2><p>考虑求出点双。分类讨论：</p>
+<ul>
+<li>翻转的是黑棋，直接判断四联通块中没有气的棋子数与是否有气即可。</li>
+<li>翻转的是白棋。它需要是割点才会导致其他棋子被断气，只要看它链接的点双分量的气即可。</li>
+</ul>
+<p>细节有亿点恶心。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -894,84 +982,9 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://flying2019.github.io/2021/10/07/test/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my.jpg">
-      <meta itemprop="name" content="Flying2018">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flying2018">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/10/07/test/" class="post-title-link" itemprop="url">test</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-10-07 20:52:01" itemprop="dateCreated datePublished" datetime="2021-10-07T20:52:01+08:00">2021-10-07</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-10-09 08:16:15" itemprop="dateModified" datetime="2021-10-09T08:16:15+08:00">2021-10-09</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>test</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/10/07/test/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 </div>
   </main>
