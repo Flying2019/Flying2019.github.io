@@ -490,8 +490,9 @@
   <entry>
     <title>gym102155</title>
     <url>/2021/10/19/gym102155/</url>
-    <content><![CDATA[<p>因为某些奇怪的事，又被 Clovers 带飞了。</p>
-<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a><a href="https://codeforces.com/gym/102155">链接</a></h2><h2 id="A-Ability-Draft"><a href="#A-Ability-Draft" class="headerlink" title="A. Ability Draft"></a>A. Ability Draft</h2><p>神必大模拟。</p>
+    <content><![CDATA[<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a><a href="https://codeforces.com/gym/102155">链接</a></h2><span id="more"></span>
+
+<h2 id="A-Ability-Draft"><a href="#A-Ability-Draft" class="headerlink" title="A. Ability Draft"></a>A. Ability Draft</h2><p>神必大模拟。</p>
 <h2 id="C-Block-Stock-and-Two-Smoking-Galaxy-Notes"><a href="#C-Block-Stock-and-Two-Smoking-Galaxy-Notes" class="headerlink" title="C. Block, Stock and Two Smoking Galaxy Notes"></a>C. Block, Stock and Two Smoking Galaxy Notes</h2><h2 id="K-Hiding-a-Tree"><a href="#K-Hiding-a-Tree" class="headerlink" title="K. Hiding a Tree"></a>K. Hiding a Tree</h2><h2 id="H-Hiding-a-Tree"><a href="#H-Hiding-a-Tree" class="headerlink" title="H. Hiding a Tree"></a>H. Hiding a Tree</h2><p>签到题。</p>
 <h2 id="F-Shuffle"><a href="#F-Shuffle" class="headerlink" title="F. Shuffle"></a>F. Shuffle</h2><p>考虑一次操作显然是一个置换，所以一定会构成一个环。</p>
 <p>对于环等价于环同构，直接 exKMP/Hash 即可。</p>
