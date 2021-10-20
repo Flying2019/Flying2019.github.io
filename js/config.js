@@ -70,7 +70,7 @@ if (!window.NexT) window.NexT = {};
 var Backgroundlist=[/^main$/,/underline/,/^body$/];
 var Themelist=[/^.header$/,/^.footer$/];
 var Contentlist=[/.post-body/,/.post-title/,/button/];
-var Slidelist=[/.sidebar/];
+var Slidelist=[/^.sidebar$/];
 var alltype=['bcolor','tcolor','color','slidecolor']
 
 function save(str,val){localStorage.setItem(str,val);}
