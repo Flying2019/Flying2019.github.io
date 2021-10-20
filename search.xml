@@ -159,6 +159,7 @@
 <li>若 $p,q\in\text{Per}(s)$，且 $p+q-\gcd(p,q)\leq |s|$，则 $\gcd(p,q)\in\text{Per}(s)$。</li>
 <li>$\text{Sub}(s)$ 中本原平方串个数为 $O(|s|\log |s|)$。</li>
 <li>$\text{Runs}(s)$ 的所有指数之和为 $O(n)$。</li>
+<li>$s$ 的所有 border 可以被分为 $\log n$ 个等差数列。</li>
 </ol>
 </details>
 
@@ -193,8 +194,6 @@
 <p> 有两条不同对称轴的函数一定为周期函数，无论其是否为离散函数。</p>
 <p> 故 $s$ 至多只有两条重合的对称轴。</p>
  </details></li>
-</ol>
-<h3 id="关于border"><a href="#关于border" class="headerlink" title="关于border"></a>关于border</h3><ol>
 <li><p>删去 $\text{PalPre}(s)$ 前 $\sqrt n$ 与后 $\sqrt n$ 个后剩下所有元素构成一个等差数列。</p>
  <details>
  <summary>证明</summary>
@@ -204,6 +203,14 @@
  </details></li>
 </ol>
 <h3 id="关于-Runs-Lyndon串-平方串"><a href="#关于-Runs-Lyndon串-平方串" class="headerlink" title="关于 Runs/Lyndon串/平方串"></a>关于 Runs/Lyndon串/平方串</h3><ol>
+<li><p>$s+w,w+t\in\text{Lyn}\Longrightarrow s+w+t\in\text{Lyn}$。</p>
+ <details>
+ <summary>证明</summary>
+
+<p> 易得 $\text{MinSuf}(s+w+t)=\text{Min}\left(\text{Suf}(s+w)+t)\cup(\text{Suf}(s)+w+t)\right)$。</p>
+<p> 根据定义有 $s+w\leq\text{MinSuf}(s+w)$。同样有 $w+t\leq\text{MinSuf}(w+t)&lt;\text{Minsuf}(t)$。</p>
+<p> 故 $s+w+t\leq\text{MinSuf}(s+w+t)$，$s+w+t\in\text{Lyn}$。</p>
+ </details></li>
 <li><p>$\text{Len}(\text{Runs}(s))=O(n\log n)$。</p>
  <details>
  <summary>证明</summary>
