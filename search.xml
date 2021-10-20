@@ -245,13 +245,6 @@
 <p> 令 $t=\sqrt[k]s$。</p>
 <p> 若 $k$ 为奇数有 $t=t^R$，若 $k$ 为偶数则有 $t^2\in\text{Pal}$ 都可以推出 $t\in\text{Pal}$。</p>
  </details></li>
-<li><p>若 $s\in \text{PalPow}^k$，则 $\sqrt[k]s\in\text{Pal}$。</p>
- <details>
- <summary>证明</summary>
-
-<p> 令 $t=\sqrt[k]s$。</p>
-<p> 若 $k$ 为奇数有 $t=t^R$，若 $k$ 为偶数则有 $t^2\in\text{Pal}$ 都可以推出 $t\in\text{Pal}$。</p>
- </details></li>
 <li><p>若 $p,q\in\text{PrePal}(s)$ 且 $p&lt; q,2p&gt;q$，则 $2p-q\in\text{PrePal}(s)$。</p>
  <details>
  <summary>证明</summary>
