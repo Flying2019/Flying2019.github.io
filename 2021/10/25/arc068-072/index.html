@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/my32x32.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/my16x16.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"flying2019.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="C D E F    ARC068   $\color{gray}{\texttt{+}}$ $\color{gray}{\texttt{+}}$   ARC069   $\color{gray}{\texttt{+}}$ $\color{gray}{\texttt{+}}$   ARC070   $\color{green}{\texttt{+}}$    ARC071 $\color{">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AtCoder Regular Contest 068 ~ 072">
+<meta property="og:url" content="https://flying2019.github.io/2021/10/25/arc068-072/index.html">
+<meta property="og:site_name" content="Flying2018">
+<meta property="og:description" content="C D E F    ARC068   $\color{gray}{\texttt{+}}$ $\color{gray}{\texttt{+}}$   ARC069   $\color{gray}{\texttt{+}}$ $\color{gray}{\texttt{+}}$   ARC070   $\color{green}{\texttt{+}}$    ARC071 $\color{">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-25T11:14:10.000Z">
+<meta property="article:modified_time" content="2021-10-25T11:16:38.053Z">
+<meta property="article:author" content="Flying2018">
+<meta property="article:tag" content="Atcoder">
+<meta property="article:tag" content="Virtual participation">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://flying2019.github.io/2021/10/25/arc068-072/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://flying2019.github.io/2021/10/25/arc068-072/","path":"2021/10/25/arc068-072/","title":"AtCoder Regular Contest 068 ~ 072"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>AtCoder Regular Contest 068 ~ 072 | Flying2018</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Flying2018</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-info-circle fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-加密"><a href="/decrypt/" rel="section"><i class="fa fa-lock fa-fw"></i>加密</a></li>
+        <li class="menu-item menu-item-设置"><a href="/config/" rel="section"><i class="fa fa-cogs fa-fw"></i>设置</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AtCoder-Regular-Contest-068"><span class="nav-number">1.</span> <span class="nav-text">AtCoder Regular Contest 068</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#E-Snuke-Line"><span class="nav-number">1.1.</span> <span class="nav-text">E. Snuke Line</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95"><span class="nav-number">1.1.1.</span> <span class="nav-text">提交记录</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#F-Solitaire"><span class="nav-number">1.2.</span> <span class="nav-text">F. Solitaire</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AtCoder-Regular-Contest-069"><span class="nav-number">2.</span> <span class="nav-text">AtCoder Regular Contest 069</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#E-Frequency"><span class="nav-number">2.1.</span> <span class="nav-text">E. Frequency</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95-1"><span class="nav-number">2.1.1.</span> <span class="nav-text">提交记录</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#F-Flags"><span class="nav-number">2.2.</span> <span class="nav-text">F. Flags</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95-2"><span class="nav-number">2.2.1.</span> <span class="nav-text">提交记录</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AtCoder-Regular-Contest-070"><span class="nav-number">3.</span> <span class="nav-text">AtCoder Regular Contest 070</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#E-NarrowRectangles"><span class="nav-number">3.1.</span> <span class="nav-text">E. NarrowRectangles</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95-3"><span class="nav-number">3.1.1.</span> <span class="nav-text">提交记录</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AtCoder-Regular-Contest-071"><span class="nav-number">4.</span> <span class="nav-text">AtCoder Regular Contest 071</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#E-TrBBnsformBBtion"><span class="nav-number">4.1.</span> <span class="nav-text">E. TrBBnsformBBtion</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95-4"><span class="nav-number">4.1.1.</span> <span class="nav-text">提交记录</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#F-Infinite-Sequence"><span class="nav-number">4.2.</span> <span class="nav-text">F. Infinite Sequence</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95-5"><span class="nav-number">4.2.1.</span> <span class="nav-text">提交记录</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AtCoder-Regular-Contest-072"><span class="nav-number">5.</span> <span class="nav-text">AtCoder Regular Contest 072</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#D-Alice-amp-Brown"><span class="nav-number">5.1.</span> <span class="nav-text">D. Alice&amp;Brown</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#E-Alice-in-linear-land"><span class="nav-number">5.2.</span> <span class="nav-text">E. Alice in linear land</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95-6"><span class="nav-number">5.2.1.</span> <span class="nav-text">提交记录</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#F-Dam"><span class="nav-number">6.</span> <span class="nav-text">F. Dam</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95-7"><span class="nav-number">6.0.1.</span> <span class="nav-text">提交记录</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Flying2018"
+      src="/images/my.jpg">
+  <p class="site-author-name" itemprop="name">Flying2018</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://coderoj.gitee.io/" title="https:&#x2F;&#x2F;coderoj.gitee.io&#x2F;" rel="noopener" target="_blank">Jacder的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://xyix.github.io/" title="https:&#x2F;&#x2F;xyix.github.io&#x2F;" rel="noopener" target="_blank">xYix的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://cnblogs.com/pealfrog" title="https:&#x2F;&#x2F;cnblogs.com&#x2F;pealfrog" rel="noopener" target="_blank">小跳蛙的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/guts" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;guts" rel="noopener" target="_blank">克林姆森的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/zkdxl" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;zkdxl" rel="noopener" target="_blank">zk的博客</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://flying2019.github.io/2021/10/25/arc068-072/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my.jpg">
+      <meta itemprop="name" content="Flying2018">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Flying2018">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AtCoder Regular Contest 068 ~ 072
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-10-25 19:14:10 / 修改时间：19:16:38" itemprop="dateCreated datePublished" datetime="2021-10-25T19:14:10+08:00">2021-10-25</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"><strong>C</strong></th>
+<th align="center">D</th>
+<th align="center">E</th>
+<th align="center">F</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>ARC068</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">$\color{gray}{\texttt{+}}$</td>
+<td align="center">$\color{gray}{\texttt{+}}$</td>
+</tr>
+<tr>
+<td align="center"><strong>ARC069</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">$\color{gray}{\texttt{+}}$</td>
+<td align="center">$\color{gray}{\texttt{+}}$</td>
+</tr>
+<tr>
+<td align="center"><strong>ARC070</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">$\color{green}{\texttt{+}}$</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><strong>ARC071</strong></td>
+<td align="center">$\color{green}{\texttt{+}}$</td>
+<td align="center">$\color{green}{\texttt{+}}$</td>
+<td align="center">$\color{green}{\texttt{+}}$</td>
+<td align="center">$\color{green}{\texttt{+}}$</td>
+</tr>
+<tr>
+<td align="center"><strong>ARC072</strong></td>
+<td align="center">$\color{green}{\texttt{+}}$</td>
+<td align="center">$\color{green}{\texttt{+}}$</td>
+<td align="center">$\color{green}{\texttt{+1}}$</td>
+<td align="center">$\color{red}{\texttt{+}}$</td>
+</tr>
+</tbody></table>
+<span id="more"></span>
+
+<h2 id="AtCoder-Regular-Contest-068"><a href="#AtCoder-Regular-Contest-068" class="headerlink" title="AtCoder Regular Contest 068"></a><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc068">AtCoder Regular Contest 068</a></h2><h3 id="E-Snuke-Line"><a href="#E-Snuke-Line" class="headerlink" title="E. Snuke Line"></a>E. Snuke Line</h3><p>考虑最难办的事情其实就是每个车站内自己的去重。可以发现，对于 $d$ 的列车，如果某个区间长度 $\geq d$，那么其必然会被经过，否则其至多被经过一次。</p>
+<p>所以直接处理按从小到大顺序枚举 $d$，对于长度大于当前 $d$ 的区间不用加入，复杂度 $O(n\log n)$。</p>
+<h4 id="提交记录"><a href="#提交记录" class="headerlink" title="提交记录"></a><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc068/submissions/9697163">提交记录</a></h4><h3 id="F-Solitaire"><a href="#F-Solitaire" class="headerlink" title="F. Solitaire"></a>F. Solitaire</h3><p>考虑加入存在完成后整个序列一定是 $\text{/}$ 形状的，考虑要让 $1$ 出现在第 $k$ 个位置，那么还会剩下 $n-k-1$ 个，可以发现无论如何剩下的一定是一段递增或是递减的序列。且其中的最大值小于同向部分弹出的最小值。</p>
+<p>用 $f _ {i,j}$ 表示 前 $k-1$ 个数中，已确定了 $i$ 个数，最小值为 $j$。</p>
+<p>考虑新加的数，有转移式 $f _ {i,j}\rightarrow f _ {i+1,j}\ ,\ f _ {i+1,k\leq j}$。</p>
+<p>后者直接后缀和处理，复杂度 $O(n^2)$。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mod 1000000007</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 4010</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">ll f[N][N],g[N][N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n,k;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;k);</span><br><span class="line">	g[n+<span class="number">1</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">	ll res=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n-k<span class="number">-1</span>;i++) res=res*<span class="number">2</span>%mod;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=n;i&gt;=<span class="number">1</span>;i--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=n;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			(g[i][j+<span class="number">1</span>]+=f[i+<span class="number">1</span>][j]+g[i+<span class="number">1</span>][j])%=mod;</span><br><span class="line">			(f[i][j]+=f[i+<span class="number">1</span>][j]+g[i+<span class="number">1</span>][j])%=mod;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(i!=<span class="number">1</span>) <span class="keyword">for</span>(<span class="keyword">int</span> j=n;j&gt;=<span class="number">0</span>;j--) (f[i][j]+=f[i][j+<span class="number">1</span>])%=mod;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,f[<span class="number">1</span>][n-k]*res%mod);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="AtCoder-Regular-Contest-069"><a href="#AtCoder-Regular-Contest-069" class="headerlink" title="AtCoder Regular Contest 069"></a><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc069">AtCoder Regular Contest 069</a></h2><h3 id="E-Frequency"><a href="#E-Frequency" class="headerlink" title="E. Frequency"></a>E. Frequency</h3><p>考虑策略显然是用一条线从上往下压，同时压到的部分从后往前删。</p>
+<p>直接维护此时最小的位置与要删的数量即可。复杂度 $O(n\log n)$。</p>
+<h4 id="提交记录-1"><a href="#提交记录-1" class="headerlink" title="提交记录"></a><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc069/submissions/26617046">提交记录</a></h4><h3 id="F-Flags"><a href="#F-Flags" class="headerlink" title="F. Flags"></a>F. Flags</h3><p>考虑二分答案，这样相当于若干条“选了 $x$ 就不能选 $y$”，直接跑不太行，直接线段树优化建图跑 2-sat 即可。</p>
+<p>复杂度 $O(n\log^2 n)$。</p>
+<h4 id="提交记录-2"><a href="#提交记录-2" class="headerlink" title="提交记录"></a><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc069/submissions/8526354">提交记录</a></h4><h2 id="AtCoder-Regular-Contest-070"><a href="#AtCoder-Regular-Contest-070" class="headerlink" title="AtCoder Regular Contest 070"></a><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc070">AtCoder Regular Contest 070</a></h2><h3 id="E-NarrowRectangles"><a href="#E-NarrowRectangles" class="headerlink" title="E. NarrowRectangles"></a>E. NarrowRectangles</h3><p>容易发现若干 $|x-a_i|$ 构成的函数一定是凸的，考虑大力维护这个凸函数。</p>
+<p>考虑用小根堆维护最小值右边的函数，大根堆维护左边，分别维护断点。</p>
+<p>考虑每次加入一个元素后的影响：相当于在最优位置插入了一条斜率为 $0$ 的线段，然后比 $r$ 小的 $+1$，比 $r$ 大的 $-1$。</p>
+<p>考虑每次至多 $+1$，所以至多把每个堆的一个元素扔到另一个堆里，所以复杂度是对的。</p>
+<p>复杂度 $O(n\log n)$。</p>
+<h4 id="提交记录-3"><a href="#提交记录-3" class="headerlink" title="提交记录"></a><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc070/submissions/26807928">提交记录</a></h4><h2 id="AtCoder-Regular-Contest-071"><a href="#AtCoder-Regular-Contest-071" class="headerlink" title="AtCoder Regular Contest 071"></a><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc071">AtCoder Regular Contest 071</a></h2><h3 id="E-TrBBnsformBBtion"><a href="#E-TrBBnsformBBtion" class="headerlink" title="E. TrBBnsformBBtion"></a>E. TrBBnsformBBtion</h3><p>首先直接把所有 $B$ 变成 $A$ 再消掉，一定可以得到 $\leq 2$ 个 $A$。</p>
+<p>然后同样从 $\leq 2$ 个 $A$ 一定可以变成任何串。</p>
+<p>所以令 $A=1,B=2$，两个串可以互相转化当且仅当两个串的和模 $3$ 相等。</p>
+<h4 id="提交记录-4"><a href="#提交记录-4" class="headerlink" title="提交记录"></a><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc071/submissions/26808210">提交记录</a></h4><h3 id="F-Infinite-Sequence"><a href="#F-Infinite-Sequence" class="headerlink" title="F. Infinite Sequence"></a>F. Infinite Sequence</h3><p>考虑如果有超过两个非 $1$ 的位置，后面一定全部相等。</p>
+<p>如果第一个填的是 $k,k&gt;1$，并且后面不全相等，那么后面 $k$ 个必须是 $1$。</p>
+<p>所以枚举第一个填什么，可以列出 dp 式子：</p>
+<p>$$f_i=f_{i+1}+(n-1)^2+\sum_{k\geq 2}f_{i+k+1}$$</p>
+<p>直接后缀和一下即可。复杂度 $O(n)$。</p>
+<h4 id="提交记录-5"><a href="#提交记录-5" class="headerlink" title="提交记录"></a><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc071/submissions/26808430">提交记录</a></h4><h2 id="AtCoder-Regular-Contest-072"><a href="#AtCoder-Regular-Contest-072" class="headerlink" title="AtCoder Regular Contest 072"></a><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc072">AtCoder Regular Contest 072</a></h2><h3 id="D-Alice-amp-Brown"><a href="#D-Alice-amp-Brown" class="headerlink" title="D. Alice&amp;Brown"></a>D. Alice&amp;Brown</h3><p>打个表发现答案是 $|X-Y|\leq 1$。考虑证明：</p>
+<ul>
+<li>首先 $(0,0),(1,1),(0,1),(1,0)$ 显然先手必败。</li>
+<li>对于 $|X-Y|&gt;1$ 不妨假设 $X&gt;Y$，这样从 $X$ 中取 $\lceil\frac{X-Y}{3}\rceil$ 就会变成 $|X-Y|\leq 1$。</li>
+<li>对于 $|X-Y|\leq 1$ 显然不存在构造。</li>
+</ul>
+<h3 id="E-Alice-in-linear-land"><a href="#E-Alice-in-linear-land" class="headerlink" title="E. Alice in linear land"></a>E. Alice in linear land</h3><p>设修改的位置是 $p$。首先 $1\sim p$ 部分处理的结果是固定的，对于修改来说，显然此时距离原点越远越好。</p>
+<p>从后往前我们尝试构造 $f_i$ 表示从 $i$ 开始最小的距离满足不能到达。容易发现如果我们知道了 $f_{i+1}$，对于 $a_i$ 我们只要考虑会不会影响到达，如果不会就直接取上一个值，否则我们构造 $f_{i+1}+a_i$。</p>
+<p>最后只要判断这两个值哪个大即可。</p>
+<h4 id="提交记录-6"><a href="#提交记录-6" class="headerlink" title="提交记录"></a><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc072/submissions/26810848">提交记录</a></h4><h2 id="F-Dam"><a href="#F-Dam" class="headerlink" title="F. Dam"></a>F. Dam</h2><p>首先显然只要让总热量最大，除以 $L$ 就是答案。</p>
+<p>设 $f_i(x)$ 表示第 $i$ 次加水后，剩余水量为 $x$ 的最大热量，容易发现此时不断放水就可以取到原点线段上的点，所以这个函数一定是上凸的。</p>
+<p>尝试维护这个凸包。可以发现当冲入 $(x,y)$ 的水后，等同于在前面加上了 $(x,y)$ 这个向量。如果此时队首向量斜率大于当前向量，换句话说我们不会主动放掉队首对应的水，那么就直接混合这两部分即可。</p>
+<p>最后我们只需要截取 $f(L)$ 即可，可以发现超过 $L$ 的可以直接扔掉，所以用一个双端队列即可。</p>
+<p>复杂度 $O(n)$。</p>
+<h4 id="提交记录-7"><a href="#提交记录-7" class="headerlink" title="提交记录"></a><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc072/submissions/26814292">提交记录</a></h4>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Atcoder/" rel="tag"># Atcoder</a>
+              <a href="/tags/Virtual-participation/" rel="tag"># Virtual participation</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/10/20/gym102992/" rel="prev" title="2020-2021 ACM-ICPC, Asia Nanjing Regional Contest">
+                  <i class="fa fa-chevron-left"></i> 2020-2021 ACM-ICPC, Asia Nanjing Regional Contest
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Flying2018</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

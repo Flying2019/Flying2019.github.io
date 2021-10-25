@@ -81,6 +81,7 @@
 ]]></content>
       <tags>
         <tag>gym</tag>
+        <tag>Virtual participation</tag>
       </tags>
   </entry>
   <entry>
@@ -115,6 +116,7 @@
 ]]></content>
       <tags>
         <tag>gym</tag>
+        <tag>Virtual participation</tag>
       </tags>
   </entry>
   <entry>
@@ -147,6 +149,7 @@
 ]]></content>
       <tags>
         <tag>gym</tag>
+        <tag>Virtual participation</tag>
       </tags>
   </entry>
   <entry>
@@ -188,6 +191,7 @@
 <h2 id="D-FFT-Algorithm"><a href="#D-FFT-Algorithm" class="headerlink" title="D. FFT Algorithm"></a>D. FFT Algorithm</h2><h3 id="不会"><a href="#不会" class="headerlink" title="不会"></a><font color=red>不会</font></h3><h2 id="J-Closest-Pair-Algorithm"><a href="#J-Closest-Pair-Algorithm" class="headerlink" title="J. Closest Pair Algorithm"></a>J. Closest Pair Algorithm</h2><h3 id="不会-1"><a href="#不会-1" class="headerlink" title="不会"></a><font color=red>不会</font></h3>]]></content>
       <tags>
         <tag>gym</tag>
+        <tag>Virtual participation</tag>
       </tags>
   </entry>
   <entry>
@@ -539,6 +543,101 @@
         <tag>idea</tag>
         <tag>字符串</tag>
         <tag>test</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AtCoder Regular Contest 068 ~ 072</title>
+    <url>/2021/10/25/arc068-072/</url>
+    <content><![CDATA[<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"><strong>C</strong></th>
+<th align="center">D</th>
+<th align="center">E</th>
+<th align="center">F</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>ARC068</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">$\color{gray}{\texttt{+}}$</td>
+<td align="center">$\color{gray}{\texttt{+}}$</td>
+</tr>
+<tr>
+<td align="center"><strong>ARC069</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">$\color{gray}{\texttt{+}}$</td>
+<td align="center">$\color{gray}{\texttt{+}}$</td>
+</tr>
+<tr>
+<td align="center"><strong>ARC070</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">$\color{green}{\texttt{+}}$</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><strong>ARC071</strong></td>
+<td align="center">$\color{green}{\texttt{+}}$</td>
+<td align="center">$\color{green}{\texttt{+}}$</td>
+<td align="center">$\color{green}{\texttt{+}}$</td>
+<td align="center">$\color{green}{\texttt{+}}$</td>
+</tr>
+<tr>
+<td align="center"><strong>ARC072</strong></td>
+<td align="center">$\color{green}{\texttt{+}}$</td>
+<td align="center">$\color{green}{\texttt{+}}$</td>
+<td align="center">$\color{green}{\texttt{+1}}$</td>
+<td align="center">$\color{red}{\texttt{+}}$</td>
+</tr>
+</tbody></table>
+<span id="more"></span>
+
+<h2 id="AtCoder-Regular-Contest-068"><a href="#AtCoder-Regular-Contest-068" class="headerlink" title="AtCoder Regular Contest 068"></a><a href="https://atcoder.jp/contests/arc068">AtCoder Regular Contest 068</a></h2><h3 id="E-Snuke-Line"><a href="#E-Snuke-Line" class="headerlink" title="E. Snuke Line"></a>E. Snuke Line</h3><p>考虑最难办的事情其实就是每个车站内自己的去重。可以发现，对于 $d$ 的列车，如果某个区间长度 $\geq d$，那么其必然会被经过，否则其至多被经过一次。</p>
+<p>所以直接处理按从小到大顺序枚举 $d$，对于长度大于当前 $d$ 的区间不用加入，复杂度 $O(n\log n)$。</p>
+<h4 id="提交记录"><a href="#提交记录" class="headerlink" title="提交记录"></a><a href="https://atcoder.jp/contests/arc068/submissions/9697163">提交记录</a></h4><h3 id="F-Solitaire"><a href="#F-Solitaire" class="headerlink" title="F. Solitaire"></a>F. Solitaire</h3><p>考虑加入存在完成后整个序列一定是 $\text{/}$ 形状的，考虑要让 $1$ 出现在第 $k$ 个位置，那么还会剩下 $n-k-1$ 个，可以发现无论如何剩下的一定是一段递增或是递减的序列。且其中的最大值小于同向部分弹出的最小值。</p>
+<p>用 $f _ {i,j}$ 表示 前 $k-1$ 个数中，已确定了 $i$ 个数，最小值为 $j$。</p>
+<p>考虑新加的数，有转移式 $f _ {i,j}\rightarrow f _ {i+1,j}\ ,\ f _ {i+1,k\leq j}$。</p>
+<p>后者直接后缀和处理，复杂度 $O(n^2)$。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mod 1000000007</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 4010</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">ll f[N][N],g[N][N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n,k;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;k);</span><br><span class="line">	g[n+<span class="number">1</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">	ll res=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n-k<span class="number">-1</span>;i++) res=res*<span class="number">2</span>%mod;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=n;i&gt;=<span class="number">1</span>;i--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=n;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			(g[i][j+<span class="number">1</span>]+=f[i+<span class="number">1</span>][j]+g[i+<span class="number">1</span>][j])%=mod;</span><br><span class="line">			(f[i][j]+=f[i+<span class="number">1</span>][j]+g[i+<span class="number">1</span>][j])%=mod;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(i!=<span class="number">1</span>) <span class="keyword">for</span>(<span class="keyword">int</span> j=n;j&gt;=<span class="number">0</span>;j--) (f[i][j]+=f[i][j+<span class="number">1</span>])%=mod;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,f[<span class="number">1</span>][n-k]*res%mod);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="AtCoder-Regular-Contest-069"><a href="#AtCoder-Regular-Contest-069" class="headerlink" title="AtCoder Regular Contest 069"></a><a href="https://atcoder.jp/contests/arc069">AtCoder Regular Contest 069</a></h2><h3 id="E-Frequency"><a href="#E-Frequency" class="headerlink" title="E. Frequency"></a>E. Frequency</h3><p>考虑策略显然是用一条线从上往下压，同时压到的部分从后往前删。</p>
+<p>直接维护此时最小的位置与要删的数量即可。复杂度 $O(n\log n)$。</p>
+<h4 id="提交记录-1"><a href="#提交记录-1" class="headerlink" title="提交记录"></a><a href="https://atcoder.jp/contests/arc069/submissions/26617046">提交记录</a></h4><h3 id="F-Flags"><a href="#F-Flags" class="headerlink" title="F. Flags"></a>F. Flags</h3><p>考虑二分答案，这样相当于若干条“选了 $x$ 就不能选 $y$”，直接跑不太行，直接线段树优化建图跑 2-sat 即可。</p>
+<p>复杂度 $O(n\log^2 n)$。</p>
+<h4 id="提交记录-2"><a href="#提交记录-2" class="headerlink" title="提交记录"></a><a href="https://atcoder.jp/contests/arc069/submissions/8526354">提交记录</a></h4><h2 id="AtCoder-Regular-Contest-070"><a href="#AtCoder-Regular-Contest-070" class="headerlink" title="AtCoder Regular Contest 070"></a><a href="https://atcoder.jp/contests/arc070">AtCoder Regular Contest 070</a></h2><h3 id="E-NarrowRectangles"><a href="#E-NarrowRectangles" class="headerlink" title="E. NarrowRectangles"></a>E. NarrowRectangles</h3><p>容易发现若干 $|x-a_i|$ 构成的函数一定是凸的，考虑大力维护这个凸函数。</p>
+<p>考虑用小根堆维护最小值右边的函数，大根堆维护左边，分别维护断点。</p>
+<p>考虑每次加入一个元素后的影响：相当于在最优位置插入了一条斜率为 $0$ 的线段，然后比 $r$ 小的 $+1$，比 $r$ 大的 $-1$。</p>
+<p>考虑每次至多 $+1$，所以至多把每个堆的一个元素扔到另一个堆里，所以复杂度是对的。</p>
+<p>复杂度 $O(n\log n)$。</p>
+<h4 id="提交记录-3"><a href="#提交记录-3" class="headerlink" title="提交记录"></a><a href="https://atcoder.jp/contests/arc070/submissions/26807928">提交记录</a></h4><h2 id="AtCoder-Regular-Contest-071"><a href="#AtCoder-Regular-Contest-071" class="headerlink" title="AtCoder Regular Contest 071"></a><a href="https://atcoder.jp/contests/arc071">AtCoder Regular Contest 071</a></h2><h3 id="E-TrBBnsformBBtion"><a href="#E-TrBBnsformBBtion" class="headerlink" title="E. TrBBnsformBBtion"></a>E. TrBBnsformBBtion</h3><p>首先直接把所有 $B$ 变成 $A$ 再消掉，一定可以得到 $\leq 2$ 个 $A$。</p>
+<p>然后同样从 $\leq 2$ 个 $A$ 一定可以变成任何串。</p>
+<p>所以令 $A=1,B=2$，两个串可以互相转化当且仅当两个串的和模 $3$ 相等。</p>
+<h4 id="提交记录-4"><a href="#提交记录-4" class="headerlink" title="提交记录"></a><a href="https://atcoder.jp/contests/arc071/submissions/26808210">提交记录</a></h4><h3 id="F-Infinite-Sequence"><a href="#F-Infinite-Sequence" class="headerlink" title="F. Infinite Sequence"></a>F. Infinite Sequence</h3><p>考虑如果有超过两个非 $1$ 的位置，后面一定全部相等。</p>
+<p>如果第一个填的是 $k,k&gt;1$，并且后面不全相等，那么后面 $k$ 个必须是 $1$。</p>
+<p>所以枚举第一个填什么，可以列出 dp 式子：</p>
+<p>$$f_i=f_{i+1}+(n-1)^2+\sum_{k\geq 2}f_{i+k+1}$$</p>
+<p>直接后缀和一下即可。复杂度 $O(n)$。</p>
+<h4 id="提交记录-5"><a href="#提交记录-5" class="headerlink" title="提交记录"></a><a href="https://atcoder.jp/contests/arc071/submissions/26808430">提交记录</a></h4><h2 id="AtCoder-Regular-Contest-072"><a href="#AtCoder-Regular-Contest-072" class="headerlink" title="AtCoder Regular Contest 072"></a><a href="https://atcoder.jp/contests/arc072">AtCoder Regular Contest 072</a></h2><h3 id="D-Alice-amp-Brown"><a href="#D-Alice-amp-Brown" class="headerlink" title="D. Alice&amp;Brown"></a>D. Alice&amp;Brown</h3><p>打个表发现答案是 $|X-Y|\leq 1$。考虑证明：</p>
+<ul>
+<li>首先 $(0,0),(1,1),(0,1),(1,0)$ 显然先手必败。</li>
+<li>对于 $|X-Y|&gt;1$ 不妨假设 $X&gt;Y$，这样从 $X$ 中取 $\lceil\frac{X-Y}{3}\rceil$ 就会变成 $|X-Y|\leq 1$。</li>
+<li>对于 $|X-Y|\leq 1$ 显然不存在构造。</li>
+</ul>
+<h3 id="E-Alice-in-linear-land"><a href="#E-Alice-in-linear-land" class="headerlink" title="E. Alice in linear land"></a>E. Alice in linear land</h3><p>设修改的位置是 $p$。首先 $1\sim p$ 部分处理的结果是固定的，对于修改来说，显然此时距离原点越远越好。</p>
+<p>从后往前我们尝试构造 $f_i$ 表示从 $i$ 开始最小的距离满足不能到达。容易发现如果我们知道了 $f_{i+1}$，对于 $a_i$ 我们只要考虑会不会影响到达，如果不会就直接取上一个值，否则我们构造 $f_{i+1}+a_i$。</p>
+<p>最后只要判断这两个值哪个大即可。</p>
+<h4 id="提交记录-6"><a href="#提交记录-6" class="headerlink" title="提交记录"></a><a href="https://atcoder.jp/contests/arc072/submissions/26810848">提交记录</a></h4><h2 id="F-Dam"><a href="#F-Dam" class="headerlink" title="F. Dam"></a>F. Dam</h2><p>首先显然只要让总热量最大，除以 $L$ 就是答案。</p>
+<p>设 $f_i(x)$ 表示第 $i$ 次加水后，剩余水量为 $x$ 的最大热量，容易发现此时不断放水就可以取到原点线段上的点，所以这个函数一定是上凸的。</p>
+<p>尝试维护这个凸包。可以发现当冲入 $(x,y)$ 的水后，等同于在前面加上了 $(x,y)$ 这个向量。如果此时队首向量斜率大于当前向量，换句话说我们不会主动放掉队首对应的水，那么就直接混合这两部分即可。</p>
+<p>最后我们只需要截取 $f(L)$ 即可，可以发现超过 $L$ 的可以直接扔掉，所以用一个双端队列即可。</p>
+<p>复杂度 $O(n)$。</p>
+<h4 id="提交记录-7"><a href="#提交记录-7" class="headerlink" title="提交记录"></a><a href="https://atcoder.jp/contests/arc072/submissions/26814292">提交记录</a></h4>]]></content>
+      <tags>
+        <tag>Atcoder</tag>
+        <tag>Virtual participation</tag>
       </tags>
   </entry>
 </search>
