@@ -680,7 +680,8 @@
  <details>
  <summary>证明</summary>
 
-<p> <a href="file/Tight%20Bound%20for%20the%20Number%20of%20Distinct%20Palindromes%20in%20a%20Tree(2008.13209).pdf">见论文</a></p>
+<p> <a href="file/Tight%20Bound%20for%20the%20Number%20of%20Distinct%20Palindromes%20in%20a%20Tree(2008.13209).pdf">完整证明见论文</a></p>
+<p> 简要证明咕咕咕了。</p>
  </details></li>
 </ol>
 </details>
@@ -716,12 +717,12 @@
  
 <p> 考虑用类似于 $6$ 的方法证明。</p>
 <p> 一个 $\text{Run}$ $(l,r,p)$ 中至多只有 $\lfloor\frac{r-l+1}{p}\rfloor$ 个平方串，故 $\text{Pow}^2$ 串总长度不超过 $\text{Run}$ 总长度。</p>
-<p> 而一个 $\text{Runs}$ 递归构造时有所有段全等，故 $F(n)=F(t)+F(n-kt),k\geq 2$。总长度为 $O(|s|)$。</p>
+<p> 而一个 $\text{Runs}$ 递归构造时有所有段全等，故 $F(n)=F(t)+F(n-kt)+O(k),k\geq 2$。总长度为 $O(|s|)$。</p>
  </details></li>
 <li><p>$\text{Len}(\text{PowSub}(s))=O(|s|)$。</p>
  <details>
  <summary>证明</summary>
- 看起来比定理 [$3$] 高级？其实不过把递推式换成了 $F(n)=F(kt)+F(n-kt)$。
+ 看起来比定理 [$3$] 高级？其实不过把递推式换成了 $F(n)=F(t)+F(n-kt)+O(kt),k\geq 2$。
  
 <p> 其实是一样的。。。</p>
  <details>
@@ -729,6 +730,7 @@
 
 <p> 定义 Run $(l,r,p)$ 与 $(l’,r’,p’)$ 本质相同当且仅当 $r-l=r’-l’,s[l:r]=s[l’:r’]$。</p>
 <p> 则 $\text{Len}(\text{Runs}(s))=O(|s|)$。</p>
+<p> 看起来很牛逼，但貌似没有什么用。</p>
  </details>
  </details></li>
 </ol>
