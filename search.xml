@@ -320,7 +320,7 @@
 <li><p>$\text{Len}(\text{PowSub}(s))=O(|s|)$。</p>
  <details>
  <summary>证明</summary>
- 看起来比定理 [$3$](/#) 高级？其实不过把递推式换成了 $F(n)=F(kt)+F(n-kt)$。
+ 看起来比定理 [$3$] 高级？其实不过把递推式换成了 $F(n)=F(kt)+F(n-kt)$。
  
 <p> 其实是一样的。。。</p>
  <details>
