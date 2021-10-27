@@ -705,4 +705,37 @@
         <tag>Virtual participation</tag>
       </tags>
   </entry>
+  <entry>
+    <title>CF1387</title>
+    <url>/2021/10/27/CF1387/</url>
+    <content><![CDATA[<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a><a href="https://codeforces.com/contest/1387">链接</a></h2><span id="more"></span>
+
+<p>究极下饭.jpg</p>
+<h2 id="A-Graph"><a href="#A-Graph" class="headerlink" title="A. Graph"></a>A. Graph</h2><p>考虑对每个连通块分别处理。</p>
+<p>如果一个连通块是一棵树，直接设根节点是 $X$，然后可以用 $X$ 表示所有节点。最后要求是 $f(X)=\sum |X-a_i|$ 直接对 $a_i$ 排序求中位数即可。</p>
+<p>如果连通块是一个二分图，事实上如果所有偶环合法，那么等价于一棵树，否则无解，所以最后再判一波是否合法即可。</p>
+<p>对于存在奇环的图，可以发现一个奇环就可以唯一确定这个图的所有变量，随便处理即可。</p>
+<p>复杂度 $O(n\log n)$。</p>
+<h3 id="提交记录"><a href="#提交记录" class="headerlink" title="提交记录"></a><a href="https://codeforces.com/contest/1387/submission/133110890">提交记录</a></h3><h2 id="B-Village"><a href="#B-Village" class="headerlink" title="B. Village"></a>B. Village</h2><p>这个构造总的来说还是比较水的。</p>
+<p>首先是 Minimum 的部分。容易证明答案下界是 $2(n-匹配个数)$。</p>
+<p>而且下界很容易达到：考虑贪心匹配一个点和一个未匹配的子节点，剩下子节点的连成一个环。最后根如果没有匹配强行插入任意一个子节点的环中。</p>
+<p>然后是 Maximum 的部分。同样容易证明答案下界是以重心为根的子节点深度之和 $\times 2$。同样可以证明这也是答案上界：</p>
+<ul>
+<li>首先如果以除了重心以外的子节点为根，必然有若干匹配路径不经过根。那么将根想重心移到，这些不经过根的匹配路径不变，其余深度变大。</li>
+<li>如果存在路径不经过根，那么一定存在另一条路径也不经过根，交换终点总长度变大。</li>
+</ul>
+<p>所以直接以重心为根，剩下随便构造一下即可。如果节点数为奇数，最后重心需要插入到任意一对匹配中。</p>
+<h3 id="提交记录-Minimum"><a href="#提交记录-Minimum" class="headerlink" title="提交记录(Minimum)"></a><a href="https://codeforces.com/contest/1387/submission/133111598">提交记录(Minimum)</a></h3><h3 id="提交记录-Maximum"><a href="#提交记录-Maximum" class="headerlink" title="提交记录(Maximum)"></a><a href="https://codeforces.com/contest/1387/submission/133114087">提交记录(Maximum)</a></h3><h2 id="C-Viruses"><a href="#C-Viruses" class="headerlink" title="C. Viruses"></a>C. Viruses</h2><p>可以发现的是 $0$ 和 $1$ 是没有突变可能的，所以如果一个串变化过程中出现 $0,1$，那么这些 $0,1$ 就是固定的了。</p>
+<p>如果没有抗体时怎么做：考虑用 $f_i$ 表示 $i$ 最小能变成多短的串，转移考虑用类似于 SPFA 的方式转移。</p>
+<p>对于有抗体的情况：考虑建出所有抗体的 AC 自动机，那么 $0,1$ 串的任意子串都不能是该串的子串。</p>
+<p>考虑更改 dp 式子。设 $f_{i,l,r}$ 表示字符 $i$，之前在 AC 自动机上的状态是 $l$，要变成 $r$ 且不能经过终止节点的最短距离。</p>
+<p>对于每一个转移边，本质上是将上述 dp 转化成 $\min$ 矩阵形式，即</p>
+<p>$$\prod_{i\in b} f_i$$</p>
+<p>但是注意到这个 dp 可能会成环，不过我们要的是最短距离，所以不断增广，总转移数应该是 SPFA 的复杂度即 $O(nm)$，算一下是 $O(n^6)$。但众所周知 SPFA 复杂度特殊图根本卡不满，卡一卡常可以通过。</p>
+<h3 id="提交记录-1"><a href="#提交记录-1" class="headerlink" title="提交记录"></a><a href="https://codeforces.com/contest/1387/submission/133165704">提交记录</a></h3>]]></content>
+      <tags>
+        <tag>Virtual participation</tag>
+        <tag>CF</tag>
+      </tags>
+  </entry>
 </search>
