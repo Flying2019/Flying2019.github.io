@@ -640,4 +640,69 @@
         <tag>Virtual participation</tag>
       </tags>
   </entry>
+  <entry>
+    <title>2020-2021 Winter Petrozavodsk Camp, UPC contest</title>
+    <url>/2021/10/27/gym103098/</url>
+    <content><![CDATA[<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a><a href="https://codeforces.com/gym/103098">链接</a></h2><table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+<th>H</th>
+<th>I</th>
+<th>J</th>
+<th>K</th>
+<th>L</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$\color{green}{\texttt{+}}$</td>
+<td>$\color{red}{\texttt{+}}$</td>
+<td>$\color{green}{\texttt{+}}$</td>
+<td>$\color{red}{\texttt{+}}$</td>
+<td>$\color{green}{\texttt{+1}}$</td>
+<td>$\color{gray}{\texttt{+2}}$</td>
+<td></td>
+<td></td>
+<td>$\color{gray}{\texttt{+4}}$</td>
+<td>$\color{gray}{\texttt{+}}$</td>
+<td>$\color{green}{\texttt{+}}$</td>
+<td>$\color{gray}{\texttt{+3}}$</td>
+</tr>
+</tbody></table>
+<span id="more"></span>
+
+<h2 id="I-Interesting-Scoring-Systems"><a href="#I-Interesting-Scoring-Systems" class="headerlink" title="I. Interesting Scoring Systems"></a>I. Interesting Scoring Systems</h2><h2 id="J-Joyful-Numbers"><a href="#J-Joyful-Numbers" class="headerlink" title="J. Joyful Numbers"></a>J. Joyful Numbers</h2><h2 id="K-Konigsberg-Bridges"><a href="#K-Konigsberg-Bridges" class="headerlink" title="K. Königsberg Bridges"></a>K. Königsberg Bridges</h2><p>签到题。</p>
+<h2 id="C-Cartesian-MST"><a href="#C-Cartesian-MST" class="headerlink" title="C. Cartesian MST"></a>C. Cartesian MST</h2><p>考虑如果按照正常的 MST 做法，一个维度上一条边会在另一维度的每张图中都加一遍。容易发现加入答案的次数就是另一维度此时的连通块数。并且这次操作之后当前维度会恰好少一个连通块。</p>
+<p>直接按类似 Kruskal 的做法做即可。复杂度 $O(m\log m)$。</p>
+<h2 id="L-Long-Grid-Covering"><a href="#L-Long-Grid-Covering" class="headerlink" title="L. Long Grid Covering"></a>L. Long Grid Covering</h2><p>考虑大力压后两行建自动机，总共 $64$ 种状态，把不合法状态去掉大约只有 $40$ 种，直接转移即可。</p>
+<p>题解给了一种人类智慧建自动机的做法。</p>
+<p>复杂度 $O(M^3\log n)$，其中 $M$ 是自动机大小。</p>
+<h2 id="E-Even-intervals"><a href="#E-Even-intervals" class="headerlink" title="E. Even intervals"></a>E. Even intervals</h2><p>看到 $n$ 只有 $5\times 10^4$ 还能离线，直接莫队。这样只需要支持往集合里加入/删除与求所有偶数位置之和。</p>
+<p>直接权值线段树即可。复杂度 $O(n\sqrt m\log n)$。</p>
+<h2 id="A-Adjacent-Rooks"><a href="#A-Adjacent-Rooks" class="headerlink" title="A. Adjacent Rooks"></a>A. Adjacent Rooks</h2><p>首先非常暴力地用 $f_{i,j,k,l}$ 表示当前放了 $i$，$i$ 位置在 $j$，$i-1$ 位置在 $k$，有 $l$ 个相邻差为 $1$。</p>
+<p>然后发现的一点是 $i,i-1$ 的位置并不重要，只要知道是否相邻即可。</p>
+<p>所以改成用 $f_{i,j,0/1/2}$ 表示有 $j$ 个相邻差为 $1$，$i$ 在 $j$ 不相邻/左边/右边。</p>
+<p>按 $i+1$ 的位置分类讨论即可。复杂度 $O(n^2+T)$。</p>
+<h2 id="F-Friendship-Circles"><a href="#F-Friendship-Circles" class="headerlink" title="F. Friendship Circles"></a>F. Friendship Circles</h2><p>直接暴力半平面交。如果一个点在答案中，那么其到原点中垂线向原点组成的半平面在最后的半平面交中。</p>
+<p>考虑这里用斜率排序的做法有点恶心，可以反演之后求凸包。容易证明反演后凸包上的点一定对应是半平面交上的直线。</p>
+<p>题解给了一个非常牛逼的转化：</p>
+<p>容易发现最后圆经过原点一定比不经过优。那么考虑将这个圆反演，得到的是不包含原点的半平面。<br>根据圆反演的性质，圆内的点在半平面内。要求存在半平面只经过原点和某个特殊点 $p$，那么 $p$ 反演后的点一定在凸包上。<br>直接对所有点圆反演后求凸包即可。复杂度 $O(n\log n)$。</p>
+<p>可以发现题解和半平面交的做法本质上是相同的。</p>
+<h2 id="D-Display-of-Springs"><a href="#D-Display-of-Springs" class="headerlink" title="D. Display of Springs"></a>D. Display of Springs</h2><p>李超线段树板子题。</p>
+<p>直接用李超线段树维护直线之间的关系即可。单次询问 $O(\log W)$。</p>
+<h2 id="B-Beautiful-Permutation"><a href="#B-Beautiful-Permutation" class="headerlink" title="B. Beautiful Permutation"></a>B. Beautiful Permutation</h2><p>人类智慧题。</p>
+<p>Clovers 赛后搓出来的，根本不会做。</p>
+<p>题解给了一个难以描述的牛逼构造。</p>
+]]></content>
+      <tags>
+        <tag>gym</tag>
+        <tag>Virtual participation</tag>
+      </tags>
+  </entry>
 </search>
