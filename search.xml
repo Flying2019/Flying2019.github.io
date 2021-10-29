@@ -964,4 +964,106 @@
         <tag>test</tag>
       </tags>
   </entry>
+  <entry>
+    <title>XXII Open Cup. Grand Prix of Korea</title>
+    <url>/2021/10/29/gym103371/</url>
+    <content><![CDATA[<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a><a href="https://codeforces.com/gym/103371">链接</a></h2><table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+<th>H</th>
+<th>I</th>
+<th>J</th>
+<th>K</th>
+<th>L</th>
+<th>M</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$\color{green}{\texttt{+1}}$</td>
+<td></td>
+<td>$\color{green}{\texttt{+1}}$</td>
+<td></td>
+<td>$\color{gray}{\texttt{+}}$</td>
+<td></td>
+<td>$\color{red}{\texttt{+}}$</td>
+<td>$\color{gray}{\texttt{+1}}$</td>
+<td></td>
+<td>$\color{gray}{\texttt{+}}$</td>
+<td>$\color{green}{\texttt{+}}$</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<span id="more"></span>
+
+<h2 id="J-Periodic-Ruler"><a href="#J-Periodic-Ruler" class="headerlink" title="J. Periodic Ruler"></a>J. Periodic Ruler</h2><p>签到题。</p>
+<h2 id="H-Or-Machine"><a href="#H-Or-Machine" class="headerlink" title="H. Or Machine"></a>H. Or Machine</h2><p>对于整周期我们按位处理，记录一个数字至少多少轮后该位变成 $1$。这本质上是一个最短路，而且有效转移边边权只有 $0$ 和 $1$。</p>
+<p>对于散周期暴力处理即可。复杂度 $O(l+n\log V)$。</p>
+<h2 id="C-Equivalent-Pipelines"><a href="#C-Equivalent-Pipelines" class="headerlink" title="C. Equivalent Pipelines"></a>C. Equivalent Pipelines</h2><p>考虑 Kruskal 求最小瓶颈路的过程：从大到小加入一条边，其连接的两个集合之间的最小瓶颈路就是该边边权。</p>
+<p>那么显然的想法就是枚举权值，将该权值连接的点集记录下来。可以发现这个过程可以用 Hash 实现：定义一个点集 Hash 函数为其所有点的 Hash 之和，连接两个点集的 Hash 值为两个点集 Hash 之积乘上边权。容易证明这个 Hash 函数与上述点集描述是等价的。</p>
+<h2 id="E-Goose-Coins"><a href="#E-Goose-Coins" class="headerlink" title="E. Goose Coins"></a>E. Goose Coins</h2><p>容易证明，假设不考虑硬币数量限制，那么对于任何有解的情况，从大往小贪心地能取就取一定可以恰好达到目标方案。而此时的硬币数量一定是最小的。</p>
+<p>同时也容易发现，任何方案可以用上述方案通过将若干 $c_i$ 硬币换成 $\frac{c_i}{c_{i-1}}$ 枚 $c_{i-1}$ 硬币得到。</p>
+<p>考虑 dp，用 $f_{i,j,k}$ 表示当前在 $i$ 位置，已经放了 $j$ 个硬币，$c_i$ 硬币还有 $k$ 个的最小/最大重量。枚举 $i$ 硬币分裂几次，可以得到一个 $O(nk^3)$ 的 dp。事实上可以通过。</p>
+<p>事实上我们并不关心当前位置到底有多少个硬币，而关心的是当前位置是否存在 $l$ 个硬币。所以我们可以不必枚举 $k$ 而是简单地后缀 $\min$，这样复杂度就变成 $O(nk^2)$。</p>
+<h2 id="K-Three-Competitions"><a href="#K-Three-Competitions" class="headerlink" title="K. Three Competitions"></a>K. Three Competitions</h2><p>容易发现，如果把 $i$ 直接击败 $j$ 看做边 $i\rightarrow j$，那么这是一张竞赛图。而竞赛图的一大性质是：给定每个点的出度，可以得到 scc（强连通分量）。</p>
+<p>具体来说，将所有点按照出度排序，可以证明如果两个点不在一个 scc 中，出度小的一定在前面，并且一个 scc 的所有点构成一个区间。</p>
+<p>这样考虑如果一个区间中的点构成一个环，当且仅当加入这个环前是合法的竞赛图（出度之和 $=\frac{n(n-1)}2$），加入之后是合法的竞赛图，且任何一个真前缀都不是合法的竞赛图。直接扫一遍即可判断 scc。</p>
+<p>最后求每个点出度可以直接二维偏序减三维偏序。复杂度 $O(n\log^2 n)$。</p>
+<h2 id="A-Automatic-Sprayer-2"><a href="#A-Automatic-Sprayer-2" class="headerlink" title="A. Automatic Sprayer 2"></a>A. Automatic Sprayer 2</h2><p>大概就是根据二阶差分之后结果确定除去第一行和最后一行的所有行上数字之和。</p>
+<p>同样也可以确定第一列和最后一列的所有行上数字之和。</p>
+<p>然后列方程手动解出第一行和最后一行。</p>
+<p>最后构造直接贪心，可以证明如果有解一定可以用贪心构造。</p>
+<details>
+    <summary>赛时题解</summary>
+
+<pre><code>容易构造使矩阵只有唯一解，所以不用想一些乱搞了。  
+令 X1|X2|X3|X4|... 表示第 1 行 1,2,3... 列的情况  
+令 a1,a2... 表示第 1,2,... 列的总数  
+X1=a2+2a3+3a4+...+W  
+X2=a1+a3+2a4+...+W  
+X3=2a1+a2+a4+...+W  
+X4=3a1+2a2+a3+...+W  
+D1=S1-S2=-a1+a2+a3+a4+...  
+D2=S2-S3=-a1-a2+a3+a4+...  
+D3=S3-S4=-a1-a2-a3+a4+...  
+D1-D2=2a2  
+D2-D3=2a3  
+...  
+可以求出 a2,a3,...,an-1  
+同理 b2,b3,...,bn-1  
+考虑求出 a1,an,b1,bn  
+可以发现的是:  
+S(n,n)=Xn+Yn=(n-1)a1+(n-1)b1+C1  
+S(n,1)=Yn+X1=(n-1)a1+(n-1)bn+C2  
+S(1,n)=Xn+Y1=(n-1)an+(n-1)b1+C3  
+S(1,1)=X1+Y1=(n-1)an+(n-1)bn+C4  
+看起来有 4 个方程，然而是线性相关的。。。最后一个方程可以用前三个表示。  
+因为少了一个等式：行的点数之和等于列的点数之和。  
+换句话说 X1+Xn=Y1+Yn+D  
+这样等式就齐了。  
+令 R1=C1-S(n,n) , R2=C2-S(n,1) , R3=C3-S(1,n)  
+(n-1)a1=(2R1+R2-R3+D)/4  
+(n-1)an=(-2R1+R2-3*R3+D)/4  
+(n-1)b1=(2R1-R2+R3-D)/4  
+(n-1)bn=(-2R1+3*R2+R3-D)/4  
+最后贪心构造即可
+</code></pre>
+</details>
+
+<h2 id="G-Lamb’s-Respite"><a href="#G-Lamb’s-Respite" class="headerlink" title="G. Lamb’s Respite"></a>G. Lamb’s Respite</h2><p>因为一开始是从满血出发的，一旦血条没了直接挂，这个过程可以看做是对序列求一个最小子段和，要求这个子段和加血量大于零。</p>
+<p>然后注意到放技能期间只要小于 $\lceil\frac{H}{10}\rceil$ 是直接锁血的。实际上只需要判断有无触及这条线即可。这个和上面那个差不多。</p>
+<p>所有操作可以用线段树维护前缀/后缀/整体最小完成。复杂度 $O(n\log n)$。</p>
+]]></content>
+      <tags>
+        <tag>Virtual participation</tag>
+        <tag>gym</tag>
+      </tags>
+  </entry>
 </search>
