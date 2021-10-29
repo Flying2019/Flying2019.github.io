@@ -987,7 +987,7 @@
 </thead>
 <tbody><tr>
 <td>$\color{green}{\texttt{+1}}$</td>
-<td></td>
+<td>$\color{red}{\texttt{+3}}$</td>
 <td>$\color{green}{\texttt{+1}}$</td>
 <td></td>
 <td>$\color{gray}{\texttt{+}}$</td>
@@ -1060,6 +1060,12 @@ S(1,1)=X1+Y1=(n-1)an+(n-1)bn+C4
 <h2 id="G-Lamb’s-Respite"><a href="#G-Lamb’s-Respite" class="headerlink" title="G. Lamb’s Respite"></a>G. Lamb’s Respite</h2><p>因为一开始是从满血出发的，一旦血条没了直接挂，这个过程可以看做是对序列求一个最小子段和，要求这个子段和加血量大于零。</p>
 <p>然后注意到放技能期间只要小于 $\lceil\frac{H}{10}\rceil$ 是直接锁血的。实际上只需要判断有无触及这条线即可。这个和上面那个差不多。</p>
 <p>所有操作可以用线段树维护前缀/后缀/整体最小完成。复杂度 $O(n\log n)$。</p>
+<h2 id="B-Cilantro"><a href="#B-Cilantro" class="headerlink" title="B. Cilantro"></a>B. Cilantro</h2><p>首先可以证明的是：只要 Y 与 N 个数一样就一定有解。具体可以反证得到。</p>
+<p>这样我们可以发现，如果前 $x$ 个元素入栈后仍然合法，那么 $y&lt;x$ 个元素入栈也一定合法。所以我们只需要求出最大的位置，然后该位置前所有与 $t_1$ 相同的字符全部合法。</p>
+<p>直接二分可以做到 $O(n\log n)$。然而这题卡常过不去。</p>
+<p>考虑优化。可以想到的一个贪心是，如果一个元素留在栈底，干脆就让它一直留在那里，直到最后一个匹配上的位置。</p>
+<p>具体来说，我们对$s$ 从前往后，尝试将 $t$ 从后往前匹配。但是注意匹配的前提要求有解，换句话说当前元素后面没有被匹配的元素需要和 $s$ 的后缀 Y/N 的数量一样多。可以再维护一个指针，表示未被匹配部分 Y/N 的数量。</p>
+<p>复杂度 $O(n)$。</p>
 ]]></content>
       <tags>
         <tag>Virtual participation</tag>
