@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://img2020.cnblogs.com/blog/1911110/202111/1911110-20211101192408979-148112896.png">
 <meta property="og:image" content="https://img2020.cnblogs.com/blog/1911110/202111/1911110-20211101192751880-817450459.png">
 <meta property="article:published_time" content="2021-11-01T13:13:11.000Z">
-<meta property="article:modified_time" content="2021-11-01T13:13:47.116Z">
+<meta property="article:modified_time" content="2021-11-01T13:20:01.487Z">
 <meta property="article:author" content="Flying2018">
 <meta property="article:tag" content="Virtual participation">
 <meta property="article:tag" content="BOI">
@@ -264,7 +264,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2021-11-01 21:13:11 / 修改时间：21:13:47" itemprop="dateCreated datePublished" datetime="2021-11-01T21:13:11+08:00">2021-11-01</time>
+      <time title="创建时间：2021-11-01 21:13:11 / 修改时间：21:20:01" itemprop="dateCreated datePublished" datetime="2021-11-01T21:13:11+08:00">2021-11-01</time>
     </span>
 
   
@@ -309,7 +309,7 @@
 
 <h2 id="C-Valley"><a href="#C-Valley" class="headerlink" title="C. Valley"></a>C. Valley</h2><p>题面给了一个点 $E$，换句话说如果断边不在 $u$ 到 $E$ 路径上直接输 <code>escaped</code>。</p>
 <p>如果以 $E$ 为根，实际上断边等价于取一个子树。换句话说，如果父亲可达，那么其子树都可达。</p>
-<p>考虑倍增，因为 $\text{dis}(x,y)=\text{dep}_x+\text{dep}<em>y-2\text{dep}</em>{\operatorname{lca}(x,y)}$，假设 $\text{lca}(x,y)$ 在 $y$ 向上 $2^i$ 的父亲中，取 $\min$ 即可。</p>
+<p>考虑倍增，因为 $\text{dis}(x,y)=\text{dep}(x)+\text{dep}(y)-2\text{dep}(\operatorname{lca}(x,y))$，假设 $\text{lca}(x,y)$ 在 $y$ 向上 $2^i$ 的父亲中，取 $\min$ 即可。</p>
 <p>最后查询倍增。复杂度 $O((n+q)\log n)$。</p>
 <details>
     <summary>代码</summary>

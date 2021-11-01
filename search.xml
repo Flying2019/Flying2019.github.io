@@ -1318,7 +1318,7 @@ S(1,1)=X1+Y1=(n-1)an+(n-1)bn+C4
 
 <h2 id="C-Valley"><a href="#C-Valley" class="headerlink" title="C. Valley"></a>C. Valley</h2><p>题面给了一个点 $E$，换句话说如果断边不在 $u$ 到 $E$ 路径上直接输 <code>escaped</code>。</p>
 <p>如果以 $E$ 为根，实际上断边等价于取一个子树。换句话说，如果父亲可达，那么其子树都可达。</p>
-<p>考虑倍增，因为 $\text{dis}(x,y)=\text{dep}_x+\text{dep}<em>y-2\text{dep}</em>{\operatorname{lca}(x,y)}$，假设 $\text{lca}(x,y)$ 在 $y$ 向上 $2^i$ 的父亲中，取 $\min$ 即可。</p>
+<p>考虑倍增，因为 $\text{dis}(x,y)=\text{dep}(x)+\text{dep}(y)-2\text{dep}(\operatorname{lca}(x,y))$，假设 $\text{lca}(x,y)$ 在 $y$ 向上 $2^i$ 的父亲中，取 $\min$ 即可。</p>
 <p>最后查询倍增。复杂度 $O((n+q)\log n)$。</p>
 <details>
     <summary>代码</summary>
