@@ -1369,4 +1369,70 @@ S(1,1)=X1+Y1=(n-1)an+(n-1)bn+C4
         <tag>BOI</tag>
       </tags>
   </entry>
+  <entry>
+    <title>2017 Chinese Multi-University Training, BeihangU Contest</title>
+    <url>/2021/11/05/gym102253/</url>
+    <content><![CDATA[<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a><a href="https://codeforces.com/gym/102253">链接</a></h2><table>
+<thead>
+<tr>
+<th align="center">A</th>
+<th align="center">B</th>
+<th align="center">C</th>
+<th align="center">D</th>
+<th align="center">E</th>
+<th align="center">F</th>
+<th align="center">G</th>
+<th align="center">H</th>
+<th align="center">I</th>
+<th align="center">J</th>
+<th align="center">K</th>
+<th align="center">L</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">$\color{green}{\texttt{+}}$</td>
+<td align="center">$\color{green}{\texttt{+2}}$</td>
+<td align="center">$\color{green}{\texttt{+3}}$</td>
+<td align="center">$\color{red}{\texttt{+1}}$</td>
+<td align="center"></td>
+<td align="center">$\color{gray}{\texttt{+}}$</td>
+<td align="center"></td>
+<td align="center">$\color{gray}{\texttt{+3}}$</td>
+<td align="center">$\color{green}{\texttt{+}}$</td>
+<td align="center">$\color{gray}{\texttt{+}}$</td>
+<td align="center">$\color{gray}{\texttt{+}}$</td>
+<td align="center">$\color{gray}{\texttt{+}}$</td>
+</tr>
+</tbody></table>
+<span id="more"></span>
+
+<h2 id="A-Add-More-Zero"><a href="#A-Add-More-Zero" class="headerlink" title="A. Add More Zero"></a>A. Add More Zero</h2><h2 id="K-KazaQ’s-Socks"><a href="#K-KazaQ’s-Socks" class="headerlink" title="K. KazaQ’s Socks"></a>K. KazaQ’s Socks</h2><h2 id="B-Balala-Power"><a href="#B-Balala-Power" class="headerlink" title="B. Balala Power!"></a>B. Balala Power!</h2><h2 id="L-Limited-Permutation"><a href="#L-Limited-Permutation" class="headerlink" title="L. Limited Permutation"></a>L. Limited Permutation</h2><p>签到题。</p>
+<h2 id="C-Colorful-Tree"><a href="#C-Colorful-Tree" class="headerlink" title="C. Colorful Tree"></a>C. Colorful Tree</h2><p>赛时想了一个很 simple 的做法：考虑点分，每种颜色分开处理贡献，一个点有贡献当且仅当其到点分中心路径上没有同色点。贡献可以通过容斥算出。复杂度 $O(n\log n)$，卡一卡常可以通过。</p>
+<p>标算给的是对每种颜色维护一个序列表示所有该颜色对应子树和，dfs 过程中维护。</p>
+<h2 id="F-Function"><a href="#F-Function" class="headerlink" title="F. Function"></a>F. Function</h2><p>手模一下可以发现 $a$ 中每个置换环需要映射到 $m$ 中一个置换环，并且环长是倍数关系。</p>
+<p>将 $m$ 里所有的环长找出来，可以求出 $n$ 的每个长度的置换环可行匹配数，相乘即可。</p>
+<h2 id="H-Hints-of-sd0061"><a href="#H-Hints-of-sd0061" class="headerlink" title="H. Hints of sd0061"></a>H. Hints of sd0061</h2><p>毛估估一下可以发现 $b$ 总共只有 $O(\log n)$ 个取值。并且所有本质不同询问的和是 $O(n)$ 的。所以直接调用库函数的 <code>nth_element</code> ，由于 $a$ 数组是随机的，能期望在 $O(n)$ 时间解决。</p>
+<h2 id="J-Journey-with-Knapsack"><a href="#J-Journey-with-Knapsack" class="headerlink" title="J. Journey with Knapsack"></a>J. Journey with Knapsack</h2><p>首先额外 $m$ 物品先不管，假如前面的物品总大小为 $i$ 的方案数为 $f_i$，那么最后就是 $\sum f_{2n-b_i}$。</p>
+<p>对于前面的部分，考虑生成函数：</p>
+<p>$$F(x)=\prod_{i=1}^{n}(1+x^i+x^{2i}+\cdots+x^{a_ii})$$</p>
+<p>$$=\prod_{i=1}^{n}\left(1-x^{i(a_i+1)}\right)\prod_{i=1}^{n}\frac{1}{1-x^i}$$</p>
+<p>前面的式子只有 $O(\sqrt n)$ 项有值，直接暴力卷上去即可。后面是经典的拆分数，可以直接用五边形数处理，然而事实上可以直接根号分治，对于前 $O(\sqrt n)$ 暴力 dp，对于后面整体转移 $O(\sqrt n)$ 遍即可。</p>
+<p>复杂度 $O(n\sqrt n)$。</p>
+<h2 id="I-I-Curse-Myself"><a href="#I-I-Curse-Myself" class="headerlink" title="I. I Curse Myself"></a>I. I Curse Myself</h2><p>首先把所有环取出来，每个环可以删一条边。这样问题转化成：给定若干组物品，每组选恰好一个，问第 $k$ 大的选择是什么。</p>
+<p>一个显然的想法是直接将每组物品排序，用 $n$ 元组 $(i_1,i_2,\cdots,i_n)$ 表示每组物品的最大值，每次取出最大的物品然后每组物品分别向后增广 $1$，可以得到 $n$ 个可能的待选值。这样时间复杂度是 $O(nk)$，但是空间也是 $O(nk)$，不大行。</p>
+<p>考虑换种思路，依次处理每组物品，维护一个堆表示此时前 $k$ 大的物品。转移的时候类似记录，复杂度 $O(nk\log n)$，空间 $O(n+k)$ 的。事实上仔细分析可以发现设 $c_i$ 为第 $i$ 个环长，复杂度为 $O(k\sum\log c_i)=O(k\log(\prod c_i))=O(k\log 2^n)=O(nk)$。</p>
+<h2 id="D-Division-Game"><a href="#D-Division-Game" class="headerlink" title="D. Division Game"></a>D. Division Game</h2><p>由于所有石子堆是相同的，令 $f(x)$ 表示一堆石子取 $x$ 次后恰好取完的方案数。可以发现无论何时都可以将一堆石子取至一颗，所以 $x$ 次没有取完的方案数就是 $f(x+1)$。这样对于第 $i$ 堆石子的答案就是 $f(x+1)^{i-1}f(x)^{k-i+1}$。</p>
+<p>考虑求出 $f$。相当于是有 $m$ 堆石子，第 $i$ 堆是 $e_i$，每次至少取一颗，问 $x$ 次取完的方案数。</p>
+<p>如果没有每次至少取一颗的限制，方案数可以对每堆石子分开计算，即：</p>
+<p>$$g(x)=\prod_{i=1}^m\binom{e_i+x-1}{x-1}$$</p>
+<p>对于每次至少取一颗的限制可以容斥，得到式子为：</p>
+<p>$$f(x)=\sum_{i=0}^{x}(-1)^{x-i}g(i)\binom{x}{i}$$</p>
+<p>$$f(x)=x!\sum_{i=0}^{x}\frac{(-1)^{x-i}}{(x-i)!}\frac{g(i)}{i!}$$</p>
+<p>这可以看作卷积，而 $985661441$ 恰好是 NTT 模数。设 $n=\sum e_i$，复杂度 $O(n\log n)$。</p>
+]]></content>
+      <tags>
+        <tag>Virtual participation</tag>
+        <tag>gym</tag>
+      </tags>
+  </entry>
 </search>
