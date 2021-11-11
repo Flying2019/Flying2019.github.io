@@ -2855,7 +2855,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #9175ff;
+  background: #4acbcb;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -3070,4 +3070,44 @@ summary {
   padding: 0.4rem 0.6rem 0.4rem 0.8rem;
   cursor: pointer;
   font-family: 'ZCOOL XiaoWei';
+}
+select {
+  box-sizing: border-box;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+  flex: 1;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background: #fff;
+  padding-right: 1.5em;
+  font-size: 0.875em;
+  padding: 0.125em 0.5em;
+}
+.selection {
+  border-top: 1px solid #fafafa;
+  padding: 0.78571429rem 1.14285714rem !important;
+  white-space: normal;
+  overflow-wrap: break-word;
+  background: rgba(0,0,0,0.05);
+  color: rgba(0,0,0,0.95);
+  z-index: 13;
+  font-size: 1rem;
+  position: relative;
+  cursor: pointer;
+  display: block;
+  height: auto;
+  min-height: 2.57142857rem;
+  text-align: left;
+  border: none;
+  line-height: 1em;
+  font-size: 1rem;
+  color: rgba(0,0,0,0.87);
+  padding: 0.78571429rem 1.14285714rem !important;
+  text-transform: none;
+  font-weight: 400;
+  box-shadow: none;
+  -webkit-touch-callout: none;
+  border-color: var(--theme-border-light) !important;
 }
