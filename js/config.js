@@ -138,7 +138,12 @@ function changeSlideColor(id)
   save('slidecolor',s);
   loadBackgroundColor('slidecolor',Slidelist);
 }
+function no_background()
+{
+  document.styleSheets[0].addRule('.main-inner','opacity: 1.0');
+}
 window.onload = loadBackgroundColor('bcolor',Backgroundlist);
 window.onload = loadContentColor('color',Contentlist);
 window.onload = loadBackgroundColor('tcolor',Themelist);
 window.onload = loadBackgroundColor('slidecolor',Slidelist);
+window.onload = no_background();
