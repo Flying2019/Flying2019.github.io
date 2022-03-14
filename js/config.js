@@ -86,9 +86,9 @@ function loadBackgroundColor(str,list)
 {
   if(load(str)!=undefined)
   {
-    var s=load(str);
-    var cssRule=document.styleSheets[0].cssRules;
-    for(var i=0;i<cssRule.length;i++)
+    let s=load(str);
+    let cssRule=document.styleSheets[0].cssRules;
+    for(let i=0;i<cssRule.length;i++)
     {
       for(let j of list)
       if(j.test(String(cssRule[i].selectorText)))
@@ -100,9 +100,9 @@ function loadContentColor(str,list)
 {
   if(load(str)!=undefined)
   {
-    var s=load(str);
-    var cssRule=document.styleSheets[0].cssRules;
-    for(var i=0;i<cssRule.length;i++)
+    let s=load(str);
+    let cssRule=document.styleSheets[0].cssRules;
+    for(let i=0;i<cssRule.length;i++)
     {
       for(let j of list)
       if(j.test(String(cssRule[i].selectorText)))
@@ -147,3 +147,21 @@ window.onload = loadContentColor('color',Contentlist);
 window.onload = loadBackgroundColor('tcolor',Themelist);
 window.onload = loadBackgroundColor('slidecolor',Slidelist);
 window.onload = no_background();
+
+function get_funval(val_list)
+{
+  for(let i=1;i<val_list.length;i++)
+  {
+    let q=val_list[i].split('=');
+    if(q.length!=2) continue;
+    if(q[0]==='funval') return q[1];
+  }
+  return 'nothing';
+}
+
+(function(){
+  let s=window.location.href;
+  let val_list=s.split('?');
+  fun_val=get_funval(val_list)
+  if(fun_val!=="nothing") window.location.href=window.location.origin+'/'+fun_val;
+})(document);
