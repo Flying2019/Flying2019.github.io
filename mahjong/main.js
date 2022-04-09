@@ -1,12 +1,35 @@
 "use strict";
-const Three=4,Two=1;
-const Num=Three*3+Two*2-1,Max_value=13,Times=8;
+let Three=4,Two=1,Max_value=9,Times=4,Typ=0,Extra=0;
+let Num=Three*3+Two*2-1;
 let a=new Array();
 const None="white",Choose="#88dd88",Red="#dd8888",Gray="#dddddd";
 const Back=8;
 const Space=32;
 const Tab=9;
 const Enter=13;
+
+//模板选择部分
+
+let pre=0;
+
+function start()
+{
+    var x=document.getElementById("type").value;
+    if(x==pre) return;
+    if(x=="ex"){alert("未完待续");return;}
+    if(x==0)
+    {
+        Three=4,Two=1,Max_value=9,Times=4,Typ=0,Extra=0;
+        restart();
+        pre=x;
+    }
+    else if(x==1)
+    {
+        Three=4,Two=1,Max_value=9,Times=4,Typ=0,Extra=1;
+        restart();
+        pre=x;
+    }
+}
 
 //判断部分
 
@@ -61,24 +84,48 @@ function check(n=Num)
     return f[Three][Two][0][0];
 }
 
-function Rong()
+function Rong(ans)
 {
-    var ans=new Array(),res=new Array;
     for(let i=0;i<Num;i++) if(a[i]<=0 || a[i]>Max_value) return false;
     a.push(1);
-    ans.push("Rong: "),res.push(None);
     for(let i=1;i<=Max_value;i++)
     {
         a[Num]=i;
-        if(check(Num+1)) ans.push(i),res.push(Red);
+        if(check(Num+1)) ans.push(i);
     }
     a.pop();
-    if(ans.length==1) return false;
-    console.log(res);
-    let str=generator(ans.length,ans,res);
-    bef+=generator()+str;
-    init();
+    if(ans.length==0) return false;
     return true;
+}
+
+function End()
+{
+    if(Typ==0)
+    {
+        if(Extra)
+        {
+            let rong=new Array();
+            Rong(rong);
+            if(rong.length==0) return false;
+            let ans=new Array(),res=new Array();
+            ans.push("Rong: "),res.push(None);
+            for(let v=0;v<rong.length;v++)
+                ans.push(rong[v]),res.push(Red);
+            let str=generator(ans.length,ans,res);
+            bef+=generator()+str;
+            init();
+        }
+        else
+        {
+            let rong=check();
+            if(rong)
+            {
+                for(let i=0;i<Num;i++) col[i]=Red;
+                bef+=generator();
+                init();
+            }
+        }
+    }
 }
 
 //表格生成部分
@@ -89,7 +136,7 @@ function generator(n=Num,la=a,cl=col)
     // for(let i=0;i<n;i++)
     //     str+="<td><a id=\"a"+i+"\" style=\"background-color: "+cl[i]+"; border-color: "+cl[i]+";\">"+(la[i]==0?"*":la[i])+"</a></td>";
     // str+="</tr></table>"
-    let str="<div border=\"1\" cellspacing=\"10\"><tr>";
+    let str="<div border=\"1\" cellspacing=\"10\" style=\"margin-bottom: 30px\"><tr>";
     for(let i=0;i<n;i++)
         str+="<font id=\"a"+i+"\" style=\"background-color: "+cl[i]+"; padding:12px; border-down: 10px; font-size:30px\">"+(la[i]==0?"*":la[i])+"</font>";
     str+="</div>"
@@ -102,6 +149,17 @@ let col=new Array();
 let bef="";
 let opt=new Array();
 let now_choose=0;
+function restart()
+{
+    bef="";
+    col=new Array();
+    opt=new Array();
+    now_choose=0;
+    Num=Three*3+Two*2-Extra;
+    a=new Array();
+    init();
+}
+
 function load()
 {
     let str=bef+generator();
@@ -163,15 +221,13 @@ document.onkeydown = function(event){undefined
     else if(p===Enter)
     {
         if(now_choose<Num) return;
-        console.log(a);
-        let b=new Array();
-        for(let i=0;i<Num;i++) b[i]=a[i];
+        // console.log(a);
         a.sort(cmp);
         reload();
-        Rong();
+        End();
     }
     else return;
     reload();
 }
 
-window.onload = init();
+window.onload = restart();
