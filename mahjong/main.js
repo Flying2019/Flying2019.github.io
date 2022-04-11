@@ -2,7 +2,7 @@
 let Three=4,Two=1,Max_value=9,Times=4,Typ=0,Extra=0;
 let Num=Three*3+Two*2;
 let a=new Array(),answer=new Array();
-const None="white",Choose="#88dd88",Red="#dd8888",Gray="#dddddd",Blue="#9991ed",Yellow="yellow";
+const None="white",Choose="#88dd88",Red="#dd8888",Gray="#dddddd",Blue="#9991ed",Yellow="#ffff00";
 const Back=8;
 const Space=32;
 const Tab=9;
@@ -61,25 +61,19 @@ function rand_hand()
 
 //模板选择部分
 
-let pre=0,Win=false,Step;
+let Win=false,Step;
 
 function start()
 {
     var x=document.getElementById("type").value;
-    if(x==pre) return;
-    if(x=="ex"){alert("未完待续");return;}
-    if(x==0)
-    {
-        Typ=0,Extra=0;
-        restart();
-        pre=x;
-    }
-    else if(x==1)
-    {
-        Typ=0,Extra=1;
-        restart();
-        pre=x;
-    }
+    Typ=document.getElementById("mode").value;
+    Three=document.getElementById("number_of_3").value;
+    Two=document.getElementById("number_of_2").value;
+    Max_value=document.getElementById("max_value").value;
+    Num=Three*3+Two*2;
+    if(x==0) Extra=0;
+    else if(x==1) Extra=1;
+    restart();
 }
 
 //判断部分
@@ -161,63 +155,60 @@ function End()
 {
     let hav=new Array(),now=new Array(),vis=new Array();
     for(let v=1;v<=Max_value;v++) vis[v]=0;
-    if(Typ==0)
+    if(Extra)
     {
-        if(Extra)
-        {
-            let rong=new Array();
-            Rong(rong);
-            if(rong.length==0) return false;
-            ++Step;
-            let ans=new Array(),res=new Array();
-            ans.push("Rong: "),res.push(None);
-            for(let v=0;v<rong.length;v++)
-                ans.push(rong[v]),res.push(Red);
+        let rong=new Array();
+        Rong(rong);
+        if(rong.length==0) return false;
+        ++Step;
+        let ans=new Array(),res=new Array();
+        ans.push("Rong: "),res.push(None);
+        for(let v=0;v<rong.length;v++)
+            ans.push(rong[v]),res.push(Red);
 
-            for(let v=0;v<Num;v++) now.push(a[v]);
-            for(let v=0;v<rong.length;v++) now.push(rong[v]);
-            console.log(now);
+        for(let v=0;v<Num;v++) now.push(a[v]);
+        for(let v=0;v<rong.length;v++) now.push(rong[v]);
+        console.log(now);
 
-            let right=true;
-            for(let i=0;i<now.length;i++)
-                if(now[i]==answer[i]) hav[i]=1;
-                else hav[i]=0,right=false;
-            for(let i=0;i<answer.length;i++)
-                if(hav[i]==0) vis[answer[i]]++;
-            for(let i=0;i<now.length;i++)
-                if(hav[i]==0 && vis[now[i]]>0) vis[now[i]]--,hav[i]=2;
-            
-            for(let v=0;v<Num;v++) if(hav[v]==1) col[v]=Yellow;
-            else if(hav[v]==2) col[v]=Blue;
-            for(let v=0;v<rong.length;v++) if(hav[v+Num]==1) res[v+1]=Yellow;
-            else if(hav[v+Num]==2) res[v+1]=Blue;
+        let right=true;
+        for(let i=0;i<now.length;i++)
+            if(now[i]==answer[i]) hav[i]=1;
+            else hav[i]=0,right=false;
+        for(let i=0;i<answer.length;i++)
+            if(hav[i]==0) vis[answer[i]]++;
+        for(let i=0;i<now.length;i++)
+            if(hav[i]==0 && vis[now[i]]>0) vis[now[i]]--,hav[i]=2;
+        
+        for(let v=0;v<Num;v++) if(hav[v]==1) col[v]=Yellow;
+        else if(hav[v]==2) col[v]=Blue;
+        for(let v=0;v<rong.length;v++) if(hav[v+Num]==1) res[v+1]=Yellow;
+        else if(hav[v+Num]==2) res[v+1]=Blue;
 
-            let str=generator(ans.length,ans,res),u=generator();
-            bef+=u+str;
-            if(right) winning();
-            else init();
-        }
-        else
-        {
-            let rong=check(a);
-            if(!rong) return;
-            ++Step;
-            let right=true;
-            for(let i=0;i<Num;i++) col[i]=Gray;
-            for(let i=0;i<Num;i++)
-                if(a[i]==answer[i]) hav[i]=1;
-                else hav[i]=0,right=false;
-            for(let i=0;i<Num;i++)
-                if(hav[i]==0) vis[answer[i]]++;
-            for(let i=0;i<Num;i++)
-                if(hav[i]==0 && vis[a[i]]>0) vis[a[i]]--,hav[i]=2;
-            for(let v=0;v<Num;v++) if(hav[v]==1) col[v]=Yellow;
-            else if(hav[v]==2) col[v]=Blue;
-            console.log(hav);
-            bef+=generator();
-            if(right) winning();
-            else init();
-        }
+        let str=generator(ans.length,ans,res),u=generator();
+        bef+=u+str;
+        if(right) winning();
+        else init();
+    }
+    else
+    {
+        let rong=check(a);
+        if(!rong) return;
+        ++Step;
+        let right=true;
+        for(let i=0;i<Num;i++) col[i]=Gray;
+        for(let i=0;i<Num;i++)
+            if(a[i]==answer[i]) hav[i]=1;
+            else hav[i]=0,right=false;
+        for(let i=0;i<Num;i++)
+            if(hav[i]==0) vis[answer[i]]++;
+        for(let i=0;i<Num;i++)
+            if(hav[i]==0 && vis[a[i]]>0) vis[a[i]]--,hav[i]=2;
+        for(let v=0;v<Num;v++) if(hav[v]==1) col[v]=Yellow;
+        else if(hav[v]==2) col[v]=Blue;
+        console.log(hav);
+        bef+=generator();
+        if(right) winning();
+        else init();
     }
 }
 
@@ -229,10 +220,29 @@ function generator(n=Num,la=a,cl=col)
     // for(let i=0;i<n;i++)
     //     str+="<td><a id=\"a"+i+"\" style=\"background-color: "+cl[i]+"; border-color: "+cl[i]+";\">"+(la[i]==0?"*":la[i])+"</a></td>";
     // str+="</tr></table>"
+    let u=new Array();
+    for(let i=0;i<n;i++) u[i]=cl[i];
+    if(Typ==1) for(let i=0;i<n;i++) if(u[i]==Yellow) u[i]=Blue;
+    if(Typ==2)
+    {
+        let hav=false;
+        for(let i=0;i<n;i++) if(u[i]==Blue || u[i]==Yellow) hav=true;
+        if(hav)
+        {
+            u.sort();
+            console.log(u);
+            if(u[n-1]==None)
+            {
+                for(let i=n-1;i;i--) u[i]=u[i-1];
+                u[0]=None;
+            }
+        }
+    }
     let str="<div border=\"1\" cellspacing=\"10\" style=\"margin-bottom: 30px\"><tr>";
     for(let i=0;i<n;i++)
-        str+="<font id=\"a"+i+"\" style=\"background-color: "+cl[i]+"; padding:12px; font-size:30px; font-family: consola\">"+(la[i]==0?"*":la[i])+"</font>";
+        str+="<font id=\"a"+i+"\" style=\"background-color: "+u[i]+"; padding:12px; font-size:30px; font-family: consola\">"+(la[i]==0?"*":la[i])+"</font>";
     str+="</div>"
+    // console.log(str);
     return str;
 }
 
