@@ -1,14 +1,18 @@
 "use strict";
 
 var mp=new Array(),ban=new Array();
-var n=7,End=false;
-const Color=["black","#0000ee","#00ee00"];
-const char=["*","O","X"],BanCellBackground="#ee8080";
+var n=7,End=false,Seed=new Array(),S0=0;
+const Color=["rgba(0,0,0,0)","#000000","#000000"];
+const char=["*","●","○"],BanCellBackground="#ffc0c0";
 const X=[-1,-1,-1,0,0,1,1,1],Y=[-1,0,1,-1,1,-1,0,1];
+
+var hist=new Array();
 
 function Rand(x)
 {
-    return Math.floor(Math.random()*x);
+    let p=Seed[S0]%x;
+    S0++;
+    return p;
 }
 
 //Alice
@@ -127,7 +131,6 @@ function init()
 {
     n=document.getElementById("type").value;
     End=false;
-    console.log(n);
     mp=new Array(n);
     ban=new Array(n);
     for(let i=0;i<n;i++) mp[i]=new Array(n);
@@ -139,10 +142,9 @@ function init()
 function print()
 {
     let str="";
-    console.log(n);
     for(let i=0;i<n;i++)
     {
-        let p=`<div cellspacing="10" style="font-size: 30px; line-height: 1.2em;">`;
+        let p=`<div cellspacing="10" style="font-size: 30px; line-height: 1.1em;">`;
         for(let j=0;j<n;j++)
         {
             p+=`<cell onclick='Click(`+i+`,`+j+`);' style="color: `+Color[mp[i][j]]+";";
@@ -167,7 +169,7 @@ function Alice()
 {
     let p=alice_put();
     if(p[0]==-1){end("Bob");return;}
-    else mp[p[0]][p[1]]=1,console.log(p[0],p[1]);
+    else mp[p[0]][p[1]]=1,hist.push(p);
     update_ban_cell();
     if(check_end()) end("Alice");
 }
@@ -175,6 +177,7 @@ function Alice()
 function Click(x,y)
 {
     if(mp[x][y] || ban[x][y] || End) return;
+    hist.push([x,y]);
     mp[x][y]=2;
     Alice();
     print();
@@ -183,8 +186,24 @@ function Click(x,y)
 function start()
 {
     document.getElementById('end').innerHTML="";
+    Seed=new Array();
+    for(let i=0;i<200;i++) Seed[i]=Math.floor(Math.random()*1e8);
+    S0++;
     init();
     Alice();
+    print();
+}
+
+function Back()
+{
+    if(End || hist.length<2) return;
+    for(let i=0;i<=1;i++)
+    {
+        let p=hist[hist.length-1];
+        mp[p[0]][p[1]]=0;
+        hist.pop();
+    }
+    S0--;
     print();
 }
 
