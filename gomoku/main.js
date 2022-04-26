@@ -2,8 +2,8 @@
 
 var mp=new Array(),ban=new Array();
 var n=7,End=false,Seed=new Array(),S0=0;
-const Color=["rgba(0,0,0,0)","#000000","#000000","#0000cc"];
-const char=["*","●","○"];
+const Color=["rgba(0,0,0,0)","#008800","#0000aa","#cc8800"];
+const char=["&nbsp;","o","x"];
 const BanCellBackground=["white","#a0ffa0","#ffa0a0 !important","#eeee77 !important"];
 const X=[-1,-1,-1,0,0,1,1,1],Y=[-1,0,1,-1,1,-1,0,1];
 
@@ -147,10 +147,10 @@ function init()
 
 function print()
 {
-    let str="";
+    let str=`<celltable style="float: center; font-size: 30px; line-height: 1.2em;"><tr>`;
     for(let i=0;i<n;i++)
     {
-        let p=`<div cellspacing="10" style="font-size: 30px; line-height: 1.25em;">`;
+        let p=`<div>`;
         for(let j=0;j<n;j++)
         {
             p+=`<cell onclick='Click(`+i+`,`+j+`);' style="color: `+Color[i==hist[hist.length-1][0] && j==hist[hist.length-1][1]?3:mp[i][j]]+";";
@@ -161,6 +161,7 @@ function print()
         p+="</div>";
         str+=p;
     }
+    str+=`</celltable>`;
     document.getElementById('main').innerHTML=str;
 }
 
@@ -168,7 +169,7 @@ function end(winner)
 {
     update_ban_cell();
     print();
-    let str=`<cell id="end" onclick="start()" style="background-color: white !important"><strong style="font-size: 14px; color: red">`+winner+` Win</strong></cell>`;
+    let str=`<cell id="end" onclick="start()" style="background-color: white !important;border-style: groove"><strong style="font-size: 14px; color: red;">`+winner+` Win</strong></cell>`;
     document.getElementById('end').innerHTML=str;
     End=true;
 }
