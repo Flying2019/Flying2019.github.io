@@ -144,7 +144,7 @@ function print()
     let str="";
     for(let i=0;i<n;i++)
     {
-        let p=`<div cellspacing="10" style="font-size: 30px; line-height: 1.1em;">`;
+        let p=`<div cellspacing="10" style="font-size: 30px; line-height: 1.25em;">`;
         for(let j=0;j<n;j++)
         {
             p+=`<cell onclick='Click(`+i+`,`+j+`);' style="color: `+Color[mp[i][j]]+";";
@@ -160,7 +160,7 @@ function print()
 
 function end(winner)
 {
-    let str=`<cell id="end" onclick="start()" style="background-color: white !important"><strong style="font-size: 20px; color=red">`+winner+` Win</strong></cell>`;
+    let str=`<cell id="end" onclick="start()" style="background-color: white !important"><strong style="font-size: 14px; color: red">`+winner+` Win</strong></cell>`;
     document.getElementById('end').innerHTML=str;
     End=true;
 }
