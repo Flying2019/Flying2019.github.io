@@ -147,7 +147,7 @@ function init()
 
 function print()
 {
-    let str=`<celltable style="float: center; font-size: 30px; line-height: 1.2em;"><tr>`;
+    let str=`<celltable style="float: center; font-size: 30px; line-height: 1.12em;"><tr>`;
     for(let i=0;i<n;i++)
     {
         let p=`<div>`;
