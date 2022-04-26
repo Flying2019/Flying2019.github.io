@@ -27,7 +27,7 @@ function alice_init()
     for(let i=1;i<=12;i++) _20[i]=_20[i-1]*20;
     for(let i=1;i<=12;i++) _30[i]=_30[i-1]*30;
 }
-function alice_score(player=1)
+function alice_score(player,mp)
 {
     let other=3-player;
     let res=0;
@@ -77,7 +77,7 @@ function alice_score(player=1)
         }
     return res;
 }
-function alice_put(player=1)
+function alice_put(player,mp)
 {
     let mx=1e17;
     var prep=new Array();
@@ -85,7 +85,7 @@ function alice_put(player=1)
         for(let j=0;j<n;j++) if(!mp[i][j])
         {
             mp[i][j]=player;
-            let sc=alice_score(player);
+            let sc=alice_score(player,mp);
             if(sc!=undefined)
             {
                 if(sc<mx) mx=sc,prep=new Array();
@@ -93,7 +93,7 @@ function alice_put(player=1)
             }
             mp[i][j]=0;
         }
-    console.log(player,prep);
+    // console.log(player,prep);
     if(prep.length==0) return [-1,-1];
     let p=prep[Rand(prep.length)];
     return p;
@@ -174,13 +174,24 @@ function end(winner)
     End=true;
 }
 
+var bob_put=function (mp){return alice_put(2,mp);};
+
 function Alice()
 {
-    var p=alice_put();
+    var p=alice_put(1,mp);
     if(p[0]==-1){end("Bob");return;}
     else mp[p[0]][p[1]]=1,hist.push(p);
     update_ban_cell();
     if(check_end()) end("Alice");
+}
+
+function Bob()
+{
+    var p=bob_put(mp);
+    if(p[0]==-1){end("Alice");return;}
+    else mp[p[0]][p[1]]=2,hist.push(p);
+    update_ban_cell();
+    if(check_end()) end("Bob");
 }
 
 function Click(x,y)
@@ -221,9 +232,12 @@ function Back()
 function Auto()
 {
     if(End) return;
-    let p=alice_put(2);
-    if(p[0]==-1){end("Alice");return;}
-    Click(p[0],p[1]);
+    Bob();
+    if(End) return;
+    Alice();
+    update_ban_cell();
+    print();
+    setTimeout(function(){Auto();},100);
 }
 
 window.onload = alice_init();
