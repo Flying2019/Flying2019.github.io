@@ -186,6 +186,7 @@ function Click(x,y)
 function start()
 {
     document.getElementById('end').innerHTML="";
+    hist=new Array();
     Seed=new Array();
     for(let i=0;i<200;i++) Seed[i]=Math.floor(Math.random()*1e8);
     S0++;
