@@ -29,7 +29,7 @@
 <meta property="og:description" content="cell{         writing-mode: horizontal-tb !important;         cursor: pointer;         background-color: #ffffff;         padding-left: 6px;         padding-right: 6px;         font-family: monos">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-25T23:39:46.000Z">
-<meta property="article:modified_time" content="2022-04-26T08:12:46.604Z">
+<meta property="article:modified_time" content="2022-04-26T09:59:18.854Z">
 <meta property="article:author" content="Flying2018">
 <meta name="twitter:card" content="summary">
 
@@ -256,14 +256,15 @@
         border-style: ridge;
     }
     cell:hover{
-        background-color: #a0a0a0;
+        background-color: #cacaca !important;
     }
     cell:active{
-        background-color: #e0e0e0;
+        background-color: #a0a0a0 !important;
     }
 </style>
 <div id="main"></div>
 <cell onclick="Back()" style="font-size: 15px; line-height: 3em;">Back</cell>
+<cell onclick="Auto()" style="font-size: 15px; line-height: 3em;">Auto</cell>
 <div id="end"></div>
 <div style="float: right">
     <select id="type" onchange="start()">
