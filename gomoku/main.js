@@ -143,6 +143,10 @@ function init()
     for(let i=0;i<n;i++) ban[i]=new Array(n);
     for(let i=0;i<n;i++) 
         for(let j=0;j<n;j++) mp[i][j]=0,ban[i][j]=0;
+    hist=new Array();
+    Seed=new Array();
+    for(let i=0;i<200;i++) Seed[i]=Math.floor(Math.random()*1e8);
+    S0=0;
 }
 
 function print()
@@ -165,12 +169,13 @@ function print()
     document.getElementById('main').innerHTML=str;
 }
 
-function end(winner)
+function end(winner_player)
 {
+    let str=winner_player==1?`<strong style="font-size: 14px; color: red;">Alice Win</strong>`:`<strong style="font-size: 14px; color: green;">Bob Win</strong>`;
     update_ban_cell();
     print();
-    let str=`<cell id="end" onclick="start()" style="background-color: white !important;border-style: groove"><strong style="font-size: 14px; color: red;">`+winner+` Win</strong></cell>`;
     document.getElementById('end').innerHTML=str;
+    document.getElementById('restart').style.visibility='visible';
     End=true;
 }
 
@@ -179,19 +184,18 @@ var bob_put=function (mp){return alice_put(2,mp);};
 function Alice()
 {
     var p=alice_put(1,mp);
-    if(p[0]==-1){end("Bob");return;}
+    if(p[0]==-1){end(2);return;}
     else mp[p[0]][p[1]]=1,hist.push(p);
     update_ban_cell();
-    if(check_end()) end("Alice");
+    if(check_end()) end(1);
 }
 
 function Bob()
 {
     var p=bob_put(mp);
-    if(p[0]==-1){end("Alice");return;}
+    if(p[0]==-1){end(1);return;}
     else mp[p[0]][p[1]]=2,hist.push(p);
     update_ban_cell();
-    if(check_end()) end("Bob");
 }
 
 function Click(x,y)
@@ -205,11 +209,9 @@ function Click(x,y)
 
 function start()
 {
+    document.getElementById('restart').style.visibility='hidden';
+    document.getElementById('test').innerHTML="";
     document.getElementById('end').innerHTML="";
-    hist=new Array();
-    Seed=new Array();
-    for(let i=0;i<200;i++) Seed[i]=Math.floor(Math.random()*1e8);
-    S0=0;
     init();
     Alice();
     print();
@@ -231,13 +233,47 @@ function Back()
 
 function Auto()
 {
-    if(End) return;
-    Bob();
-    if(End) return;
-    Alice();
-    update_ban_cell();
-    print();
-    setTimeout(function(){Auto();},100);
+    while(!End)
+    {
+        Bob();
+        if(End) break;
+        Alice();
+        update_ban_cell();
+        print();
+    }
+}
+
+function Test()
+{
+    document.getElementById('back').style.visibility='hidden';
+    document.getElementById('auto').style.visibility='hidden';
+    let win_cnt=0,Times=n<=9?200:100;
+    for(let T=1;T<=Times;T++)
+    {
+        init();
+        End=true;
+        for(var i=0;i<=1000;i++)
+        {
+            var p=alice_put(1,mp);
+            if(p[0]==-1){win_cnt++;break;}
+            else mp[p[0]][p[1]]=1;
+            update_ban_cell();
+            p=bob_put(mp);
+            if(p[0]==-1) break;
+            else
+            {
+                if(ban[p[0]][p[1]]>>1&1 || mp[p[0]][p[1]]==2) break;
+                mp[p[0]][p[1]]=2;
+                update_ban_cell();
+            }
+        }
+    }
+    console.log(win_cnt);
+    document.getElementById('restart').style.visibility='visible';
+    document.getElementById('test').innerHTML="rate:  "+(win_cnt/(Times/100))+"%";
+    End=true;
+    document.getElementById('back').style.visibility='visible';
+    document.getElementById('auto').style.visibility='visible';
 }
 
 window.onload = alice_init();
