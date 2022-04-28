@@ -209,6 +209,11 @@ function Click(x,y)
 
 function start()
 {
+    document.getElementById('tests').style.visibility='visible';
+    document.getElementById('back').style.visibility='visible';
+    document.getElementById('main').style.visibility='visible';
+    document.getElementById('auto').style.visibility='visible';
+    document.getElementById('select').style.visibility='visible';
     document.getElementById('restart').style.visibility='hidden';
     document.getElementById('test').innerHTML="";
     document.getElementById('end').innerHTML="";
@@ -242,38 +247,47 @@ function Auto()
         print();
     }
 }
-
-function Test()
+var win_cnt;
+function test_one(times,Times)
 {
-    document.getElementById('back').style.visibility='hidden';
-    document.getElementById('auto').style.visibility='hidden';
-    let win_cnt=0,Times=n<=9?200:100;
-    for(let T=1;T<=Times;T++)
+    if(times==Times)
     {
-        init();
-        End=true;
-        for(var i=0;i<=1000;i++)
+        document.getElementById('restart').style.visibility='visible';
+        document.getElementById('test').innerHTML="rate:  "+(win_cnt/(Times/100))+"%";
+        return;
+    }
+    init();
+    for(var i=0;i<=1000;i++)
+    {
+        var p=alice_put(1,mp);
+        if(p[0]==-1){win_cnt++;break;}
+        else mp[p[0]][p[1]]=1;
+        update_ban_cell();
+        p=bob_put(mp);
+        if(p[0]==-1) break;
+        else
         {
-            var p=alice_put(1,mp);
-            if(p[0]==-1){win_cnt++;break;}
-            else mp[p[0]][p[1]]=1;
+            if(ban[p[0]][p[1]]>>1&1 || mp[p[0]][p[1]]==2) break;
+            mp[p[0]][p[1]]=2;
             update_ban_cell();
-            p=bob_put(mp);
-            if(p[0]==-1) break;
-            else
-            {
-                if(ban[p[0]][p[1]]>>1&1 || mp[p[0]][p[1]]==2) break;
-                mp[p[0]][p[1]]=2;
-                update_ban_cell();
-            }
         }
     }
-    console.log(win_cnt);
-    document.getElementById('restart').style.visibility='visible';
-    document.getElementById('test').innerHTML="rate:  "+(win_cnt/(Times/100))+"%";
+    if(times%Math.round(Times/100)==0)
+        document.getElementById('test').innerHTML="Running  "+(times/(Times/100))+"% ...";
+    setTimeout(() =>{test_one(times+1,Times);},0);
+}
+function Test()
+{
+    start();
+    document.getElementById('main').style.visibility='hidden';
+    document.getElementById('back').style.visibility='hidden';
+    document.getElementById('tests').style.visibility='hidden';
+    document.getElementById('auto').style.visibility='hidden';
+    document.getElementById('select').style.visibility='hidden';
+    win_cnt=0;
+    let Times=(n<=9?500:(n==11?200:100));
     End=true;
-    document.getElementById('back').style.visibility='visible';
-    document.getElementById('auto').style.visibility='visible';
+    test_one(0,Times);
 }
 
 window.onload = alice_init();

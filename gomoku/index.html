@@ -29,7 +29,7 @@
 <meta property="og:description" content="cell{         writing-mode: horizontal-tb !important;         cursor: pointer;         background-color: #ffffff;         padding-left: 6px;         padding-right: 6px;         font-family: conso">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-25T23:39:46.000Z">
-<meta property="article:modified_time" content="2022-04-28T02:39:24.152Z">
+<meta property="article:modified_time" content="2022-04-28T03:05:38.983Z">
 <meta property="article:author" content="Flying2018">
 <meta name="twitter:card" content="summary">
 
@@ -283,11 +283,11 @@
 <div id="main"></div>
 <cell onclick="Back()" id="back" style="font-size: 15px; line-height: 3em; border-style: groove">Back</cell>
 <cell onclick="Auto()" id="auto" style="font-size: 15px; line-height: 3em; border-style: groove">Auto</cell>
-<cell onclick="Test()" style="font-size: 15px; line-height: 3em; border-style: groove">Test</cell>
+<cell onclick="Test()" id="tests" style="font-size: 15px; line-height: 3em; border-style: groove">Test</cell>
 <cell onclick="start()" id="restart" style="font-size: 15px; line-height: 3em; border-style: groove; visibility: hidden">Restart</cell>
 <div id="end"></div>
 <div id="test"></div>
-<div style="float: right">
+<div style="float: right" id="select">
     <select id="type" onchange="start()">
         <option value="5">5*5</option>
         <option value="7" selected="selected">7*7</option>
