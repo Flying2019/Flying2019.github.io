@@ -1,94 +1,15 @@
 "use strict";
 
+import { alice_back, alice_init, alice_put, alice_score } from "./alice.js";
+
 var mp = new Array(), ban = new Array();
-var n = 7, End = false, Seed = new Array(), S0 = 0;
+var n = 7, End = false;
 const Color = ["rgba(0,0,0,0)", "#008800", "#0000aa", "#cc8800"];
 const char = ["\u00A0", "o", "x"];
 const BanCellBackground = ["white", "#a0ffa0", "#ffa0a0", "#eeee77"];
 const X = [-1, -1, -1, 0, 0, 1, 1, 1], Y = [-1, 0, 1, -1, 1, -1, 0, 1];
 
 var hist = new Array();
-
-function Rand(x) {
-    let p = Seed[S0] % x;
-    S0++;
-    return p;
-}
-
-//Alice
-
-var _20 = new Array(15), _30 = new Array(15);
-
-function alice_init() {
-    _20 = new Array(15), _30 = new Array(15);
-    _20[0] = _30[0] = 1;
-    for (let i = 1; i <= 12; i++) _20[i] = _20[i - 1] * 20;
-    for (let i = 1; i <= 12; i++) _30[i] = _30[i - 1] * 30;
-}
-function alice_score(player, mp) {
-    let other = 3 - player;
-    let res = 0;
-    for (let i = 0; i < n; i++)
-        for (let j = 0; j + 3 < n; j++) {
-            let c1 = 0, c2 = 0;
-            for (let k = 0; k < 4; k++) c1 += (mp[i][j + k] == player);
-            for (let k = 0; k < 4; k++) c2 += (mp[i][j + k] == other);
-            if (c1 && c2) continue;
-            if (c1 == 4) return undefined;
-            if (c1 > 0) res += _20[c1], res += 500;
-            if (c2 > 0) res -= _30[c2], res -= 500;
-        }
-    for (let i = 0; i + 3 < n; i++)
-        for (let j = 0; j < n; j++) {
-            let c1 = 0, c2 = 0;
-            for (let k = 0; k < 4; k++) c1 += (mp[i + k][j] == player);
-            for (let k = 0; k < 4; k++) c2 += (mp[i + k][j] == other);
-            if (c1 && c2) continue;
-            if (c1 == 4) return undefined;
-            if (c1 > 0) res += _20[c1], res += 500;
-            if (c2 > 0) res -= _30[c2], res -= 500;
-        }
-    for (let i = 0; i + 3 < n; i++)
-        for (let j = 0; j + 3 < n; j++) {
-            let c1 = 0, c2 = 0;
-            for (let k = 0; k < 4; k++) c1 += (mp[i + k][j + k] == player);
-            for (let k = 0; k < 4; k++) c2 += (mp[i + k][j + k] == other);
-            if (c1 && c2) continue;
-            if (c1 == 4) return undefined;
-            if (c1 > 0) res += _20[c1], res += 500;
-            if (c2 > 0) res -= _30[c2], res -= 500;
-        }
-    for (let i = 0; i + 3 < n; i++)
-        for (let j = 3; j < n; j++) {
-            let c1 = 0, c2 = 0;
-            for (let k = 0; k < 4; k++) c1 += (mp[i + k][j - k] == player);
-            for (let k = 0; k < 4; k++) c2 += (mp[i + k][j - k] == other);
-            if (c1 && c2) continue;
-            if (c1 == 4) return undefined;
-            if (c1 > 0) res += _20[c1], res += 500;
-            if (c2 > 0) res -= _30[c2], res -= 500;
-        }
-    return res;
-}
-function alice_put(player, mp) {
-    let mx = 1e17;
-    var prep = new Array();
-    for (let i = 0; i < n; i++)
-        for (let j = 0; j < n; j++) if (!mp[i][j]) {
-            mp[i][j] = player;
-            let sc = alice_score(player, mp);
-            if (sc != undefined) {
-                if (sc < mx) mx = sc, prep = new Array();
-                if (sc == mx) prep.push([i, j]);
-            }
-            mp[i][j] = 0;
-        }
-    // console.log(player,prep);
-    if (prep.length == 0) return [-1, -1];
-    let p = prep[Rand(prep.length)];
-    return p;
-}
-
 //Check
 
 function update_ban_cell() {
@@ -127,9 +48,7 @@ function init() {
     for (let i = 0; i < n; i++)
         for (let j = 0; j < n; j++) mp[i][j] = 0, ban[i][j] = 0;
     hist = new Array();
-    Seed = new Array();
-    for (let i = 0; i < 200; i++) Seed[i] = Math.floor(Math.random() * 1e8);
-    S0 = 0;
+    alice_init(n);
 }
 
 function print() {
@@ -146,20 +65,19 @@ function print() {
             cell.style.color = Color[i == hist[hist.length - 1][0] && j == hist[hist.length - 1][1] ? 3 : mp[i][j]];
             if (ban[i][j]) {
                 cell.style.backgroundColor = BanCellBackground[ban[i][j]];
-                if(ban[i][j]>>1&1) cell.setAttribute('disabled','');
+                if (ban[i][j] >> 1 & 1) cell.setAttribute('disabled', '');
             }
-            else if (mp[i][j])
-            {
+            else if (mp[i][j]) {
                 cell.style.backgroundColor = "white";
-                cell.setAttribute('disabled','');
+                cell.setAttribute('disabled', '');
             }
             cell.innerText = char[mp[i][j]];
             p.appendChild(cell);
         }
         document.getElementById('main').appendChild(p);
     }
-    if(S0<2) document.getElementById('back').setAttribute('disabled','');
-    if(S0>1 && !End) document.getElementById('back').removeAttribute('disabled');
+    if (hist.length < 2) document.getElementById('back').setAttribute('disabled', '');
+    if (hist.length > 1 && !End) document.getElementById('back').removeAttribute('disabled');
 }
 
 function end(winner_player) {
@@ -169,9 +87,9 @@ function end(winner_player) {
     document.getElementById('end').innerHTML = str;
     document.getElementById('main').setAttribute('disabled', '');
     document.getElementById('restart').removeAttribute('disabled');
-    document.getElementById('auto').setAttribute('disabled','');
-    document.getElementById('back').setAttribute('disabled','');
-    document.getElementById('tests').setAttribute('disabled','');
+    document.getElementById('auto').setAttribute('disabled', '');
+    document.getElementById('back').setAttribute('disabled', '');
+    document.getElementById('tests').setAttribute('disabled', '');
     End = true;
 }
 
@@ -220,7 +138,7 @@ function Back() {
         mp[p[0]][p[1]] = 0;
         hist.pop();
     }
-    S0--;
+    alice_back();
     update_ban_cell();
     print();
 }
@@ -254,9 +172,7 @@ function test_one(times, Times, callback) {
             update_ban_cell();
         }
     }
-    if (times % Math.round(Times / 100) == 0) {
-        document.getElementById('test').innerHTML = "Running  " + (times / (Times / 100)) + "% ...";
-    }
+    document.getElementById('test').innerHTML = "Running  " + Math.round(times / (Times / 100)) + "% ...";
     setTimeout(() => { test_one(times + 1, Times, callback); }, 0);
 }
 function Test() {
@@ -268,14 +184,22 @@ function Test() {
     document.getElementById('main').style.visibility = 'hidden';
     document.getElementById('select').style.visibility = 'hidden';
     win_cnt = 0;
-    let Times = (n <= 9 ? 500 : (n == 11 ? 200 : 100));
+    let Times = Math.round(50000 / (n * n));
     End = true;
     test_one(0, Times, () => {
         document.getElementById('restart').removeAttribute('disabled');
         document.getElementById('select').style.visibility = 'visible';
-        document.getElementById('test').innerHTML = "rate:  " + (win_cnt / (Times / 100)) + "%";
+        document.getElementById('test').innerHTML = "rate:  " + Math.round(win_cnt / (Times / 100) * 10) / 10 + "%";
     });
 }
 
-window.onload = alice_init();
-window.onload = start();
+function Init() {
+    document.getElementById('back').addEventListener('click', () => { Back(); });
+    document.getElementById('auto').addEventListener('click', () => { Auto(); });
+    document.getElementById('tests').addEventListener('click', () => { Test(); });
+    document.getElementById('restart').addEventListener('click', () => { start(); });
+    document.getElementById('type').addEventListener('change', () => { start(); });
+    start();
+}
+
+window.onload = Init();
