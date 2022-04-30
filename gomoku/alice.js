@@ -2,6 +2,8 @@ var S0 = 0, Seed = new Array(), _20 = new Array(15), _30 = new Array(15);
 const W0 = 500;
 const X = [1, -1, 0, 1], Y = [0, 1, 1, 1];
 
+let score=new Array();
+
 export function alice_rand(x) {
     let p = Seed[S0] % x;
     S0++;

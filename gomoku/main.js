@@ -2,14 +2,19 @@
 
 import { alice_back, alice_init, alice_put, alice_score } from "./alice.js";
 
-var mp = new Array(), ban = new Array();
-var n = 7, End = false;
-const Color = ["rgba(0,0,0,0)", "#008800", "#0000aa", "#cc8800"];
+let mp = new Array(), ban = new Array();
+let n = 7, End = false;
+const Color = ["gray", "#008800", "#0000aa", "#cc8800"];
 const char = ["\u00A0", "o", "x"];
 const BanCellBackground = ["white", "#a0ffa0", "#ffa0a0", "#eeee77"];
 const X = [-1, -1, -1, 0, 0, 1, 1, 1], Y = [-1, 0, 1, -1, 1, -1, 0, 1];
+let bob_put = function (mp, hist) { return alice_put(2, mp); };
+let bob_init = function (n0) {};
 
-var hist = new Array();
+let hist = new Array();
+let scr = new Array();
+let scr_print = false;
+let scr_update = undefined;
 //Check
 
 function update_ban_cell() {
@@ -29,6 +34,7 @@ function update_ban_cell() {
                 }
             }
     }
+    if (scr_update != undefined && scr_print == true) scr_update(mp, scr);
 }
 
 function check_end() {
@@ -43,12 +49,16 @@ function init() {
     End = false;
     mp = new Array(n);
     ban = new Array(n);
+    scr = new Array(n);
+    for (let i = 0; i < n; i++) scr[i] = new Array(n);
     for (let i = 0; i < n; i++) mp[i] = new Array(n);
     for (let i = 0; i < n; i++) ban[i] = new Array(n);
     for (let i = 0; i < n; i++)
         for (let j = 0; j < n; j++) mp[i][j] = 0, ban[i][j] = 0;
     hist = new Array();
     alice_init(n);
+    // console.log(n);
+    bob_init(n);
 }
 
 function print() {
@@ -58,6 +68,8 @@ function print() {
         let p = document.createElement('div');
         for (let j = 0; j < n; j++) {
             let cell = document.createElement('button');
+            cell.style.height = '50px';
+            cell.style.width = '50px';
             cell.classList.add('clickcell');
             cell.addEventListener('click', () => {
                 Click(i, j);
@@ -71,7 +83,13 @@ function print() {
                 cell.style.backgroundColor = "white";
                 cell.setAttribute('disabled', '');
             }
-            cell.innerText = char[mp[i][j]];
+            if (scr_print && !mp[i][j] && !(ban[i][j]>>1&1) && scr[i][j] != undefined) {
+                cell.style.backgroundColor = "orange";
+                if(scr[i][j]>1000) cell.innerText = '+';
+                else if(scr[i][j]<-100) cell.innerText = '-';
+                else cell.innerText = scr[i][j];
+            }
+            else cell.innerText = char[mp[i][j]];
             p.appendChild(cell);
         }
         document.getElementById('main').appendChild(p);
@@ -93,10 +111,16 @@ function end(winner_player) {
     End = true;
 }
 
-var bob_put = function (mp) { return alice_put(2, mp); };
+function setBobPut(new_bob_put, new_bob_init, new_scr_update) {
+    bob_init=new_bob_init;
+    new_bob_init(n);
+    bob_put = new_bob_put;
+    scr_update = new_scr_update;
+}
+globalThis.setBobPut = setBobPut;
 
 function Alice() {
-    var p = alice_put(1, mp);
+    let p = alice_put(1, mp);
     if (p[0] == -1) { end(2); return; }
     else mp[p[0]][p[1]] = 1, hist.push(p);
     update_ban_cell();
@@ -104,7 +128,7 @@ function Alice() {
 }
 
 function Bob() {
-    var p = bob_put(mp);
+    let p = bob_put(mp, hist);
     if (p[0] == -1) { end(1); return; }
     else mp[p[0]][p[1]] = 2, hist.push(p);
     update_ban_cell();
@@ -122,7 +146,11 @@ function start() {
     document.getElementById('back').removeAttribute('disabled');
     document.getElementById('tests').removeAttribute('disabled');
     document.getElementById('auto').removeAttribute('disabled');
-    document.getElementById('restart').setAttribute('disabled', '');
+    document.getElementById('step').removeAttribute('disabled');
+    if (scr_update == undefined)
+        document.getElementById('score').setAttribute('disabled', '');
+    else
+        document.getElementById('score').removeAttribute('disabled');
     document.getElementById('main').style.visibility = 'visible';
     document.getElementById('test').innerHTML = "";
     document.getElementById('end').innerHTML = "";
@@ -142,8 +170,7 @@ function Back() {
     update_ban_cell();
     print();
 }
-
-function Auto() {
+function auto_run() {
     while (!End) {
         Bob();
         if (End) break;
@@ -152,19 +179,36 @@ function Auto() {
         print();
     }
 }
-var win_cnt;
+
+function Step() {
+    Bob();
+    if (End) return;
+    Alice();
+    update_ban_cell();
+    print();
+}
+
+function Auto(player=1) {
+    if (End) return;
+    if(player==1) Alice();
+    else Bob();
+    update_ban_cell();
+    print();
+    setTimeout(()=>{Auto(3-player);},300);
+}
+let win_cnt;
 function test_one(times, Times, callback) {
     if (times == Times) {
         callback();
         return;
     }
     init();
-    for (var i = 0; i <= 1000; i++) {
-        var p = alice_put(1, mp);
+    for (let i = 0; i <= 1000; i++) {
+        let p = alice_put(1, mp);
         if (p[0] == -1) { win_cnt++; break; }
         else mp[p[0]][p[1]] = 1;
         update_ban_cell();
-        p = bob_put(mp);
+        p = bob_put(mp, hist);
         if (p[0] == -1) break;
         else {
             if (ban[p[0]][p[1]] >> 1 & 1 || mp[p[0]][p[1]] == 2) break;
@@ -180,11 +224,12 @@ function Test() {
     document.getElementById('back').setAttribute('disabled', '');
     document.getElementById('tests').setAttribute('disabled', '');
     document.getElementById('auto').setAttribute('disabled', '');
+    document.getElementById('step').setAttribute('disabled', '');
     document.getElementById('select').setAttribute('disabled', '');
     document.getElementById('main').style.visibility = 'hidden';
     document.getElementById('select').style.visibility = 'hidden';
     win_cnt = 0;
-    let Times = Math.round(50000 / (n * n));
+    let Times = Math.round(10000 / (n * n));
     End = true;
     test_one(0, Times, () => {
         document.getElementById('restart').removeAttribute('disabled');
@@ -192,12 +237,23 @@ function Test() {
         document.getElementById('test').innerHTML = "rate:  " + Math.round(win_cnt / (Times / 100) * 10) / 10 + "%";
     });
 }
+function flip_score() {
+    scr_print = !scr_print;
+    if (scr_print)
+        document.getElementById('score').innerText = "Hide Score";
+    else
+        document.getElementById('score').innerText = "Show Score";
+    update_ban_cell();
+    print();
+}
 
 function Init() {
     document.getElementById('back').addEventListener('click', () => { Back(); });
     document.getElementById('auto').addEventListener('click', () => { Auto(); });
+    document.getElementById('step').addEventListener('click', () => { Step(); });
     document.getElementById('tests').addEventListener('click', () => { Test(); });
     document.getElementById('restart').addEventListener('click', () => { start(); });
+    document.getElementById('score').addEventListener('click', () => { flip_score(); });
     document.getElementById('type').addEventListener('change', () => { start(); });
     start();
 }
