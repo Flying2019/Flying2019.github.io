@@ -1,7 +1,5 @@
-"use strict";
-
 var _20 = new Array(15), _30 = new Array(15);
-const W0 = 500;
+const W0 = 300;
 const X = [1, -1, 0, 1], Y = [0, 1, 1, 1];
 var score = new Array();
 
@@ -50,7 +48,8 @@ function bob_score(player, mp, x, y) {
     if (v2 == undefined) return undefined;
     return v2 - v1;
 }
-const Approx = [undefined,1.4,1.2,1.2,1.0];
+const Approx = [undefined, 4, 2.5, 1.0, 1.0];
+const Min_Approx = 1.2;
 function dfs_put(player, mp, depth) {
     let n = mp.length;
     let mn = 1e17;
@@ -65,21 +64,24 @@ function dfs_put(player, mp, depth) {
         }
     // console.log(depth, prep.length);
     if (prep.length == 0) return [[-1, -1], mn];
-    if (depth == 3) {
+    if (depth == 4) {
         return p0;
     }
     let p = [-1, -1], vl = 1e17;
-    let c = 0;
     let tmp = new Array();
     for (let v of prep)
         if (v[1] <= mn * Approx[depth]) tmp.push(v);
-    prep=tmp;
-    // for(let i=1;i<prep.length;i++)
-    // {
-    //     let v=bob_rand(i+1);
-    //     let t=prep[v];prep[v]=prep[i];prep[i]=t;
-    // }
+    prep = tmp;
+    for (let i = 1; i < prep.length; i++) {
+        let v = bob_rand(i + 1);
+        let t = prep[v]; prep[v] = prep[i]; prep[i] = t;
+    }
+    let c = 0;
     for (let v of prep) {
+        if (v[1] > mn * Min_Approx) {
+            if (c >= 10) continue;
+            ++c;
+        }
         mp[v[0][0]][v[0][1]] = player;
         let w = dfs_put(3 - player, mp, depth + 1);
         if (v[1] - w[1] < vl) vl = v[1] - w[1], p = v[0];

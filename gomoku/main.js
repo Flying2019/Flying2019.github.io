@@ -9,12 +9,14 @@ const char = ["\u00A0", "o", "x"];
 const BanCellBackground = ["white", "#a0ffa0", "#ffa0a0", "#eeee77"];
 const X = [-1, -1, -1, 0, 0, 1, 1, 1], Y = [-1, 0, 1, -1, 1, -1, 0, 1];
 let bob_put = function (mp, hist) { return alice_put(2, mp); };
-let bob_init = function (n0) {};
+let bob_init = function (n0) { };
 
 let hist = new Array();
 let scr = new Array();
 let scr_print = false;
 let scr_update = undefined;
+let Stop = false;
+let on_test = false, on_Auto = false;
 //Check
 
 function update_ban_cell() {
@@ -83,10 +85,10 @@ function print() {
                 cell.style.backgroundColor = "white";
                 cell.setAttribute('disabled', '');
             }
-            if (scr_print && !mp[i][j] && !(ban[i][j]>>1&1) && scr[i][j] != undefined) {
+            if (scr_print && !mp[i][j] && !(ban[i][j] >> 1 & 1) && scr[i][j] != undefined) {
                 cell.style.backgroundColor = "orange";
-                if(scr[i][j]>1000) cell.innerText = '+';
-                else if(scr[i][j]<-100) cell.innerText = '-';
+                if (scr[i][j] >= 1000) cell.innerText = '+';
+                else if (scr[i][j] <= -100) cell.innerText = '-';
                 else cell.innerText = scr[i][j];
             }
             else cell.innerText = char[mp[i][j]];
@@ -112,7 +114,7 @@ function end(winner_player) {
 }
 
 function setBobPut(new_bob_put, new_bob_init, new_scr_update) {
-    bob_init=new_bob_init;
+    bob_init = new_bob_init;
     new_bob_init(n);
     bob_put = new_bob_put;
     scr_update = new_scr_update;
@@ -188,18 +190,44 @@ function Step() {
     print();
 }
 
-function Auto(player=1) {
-    if (End) return;
-    if(player==1) Alice();
+function Auto_play(player, callback) {
+    if (End || Stop) {
+        callback();
+        return;
+    }
+    if (player == 1) Alice();
     else Bob();
     update_ban_cell();
     print();
-    setTimeout(()=>{Auto(3-player);},300);
+    setTimeout(() => { Auto_play(3 - player, callback); }, 300);
 }
+function Auto() {
+    if (on_Auto) { Stop = true; return; }
+    Stop = false; on_Auto = true;
+    document.getElementById('back').setAttribute('disabled', '');
+    document.getElementById('step').setAttribute('disabled', '');
+    document.getElementById('tests').setAttribute('disabled', '');
+    document.getElementById('select').style.visibility = 'hidden';
+    document.getElementById('restart').setAttribute('disabled', '');
+    document.getElementById('auto').innerText = "Stop";
+    Auto_play(1, () => {
+        on_Auto = false;
+        document.getElementById('auto').innerText = "Auto";
+        if(!End)
+        {
+            document.getElementById('back').removeAttribute('disabled', '');
+            document.getElementById('step').removeAttribute('disabled', '');
+            document.getElementById('tests').removeAttribute('disabled', '');
+        }
+        document.getElementById('restart').removeAttribute('disabled');
+        document.getElementById('select').style.visibility = 'visible';
+    });
+}
+
 let win_cnt;
 function test_one(times, Times, callback) {
-    if (times == Times) {
-        callback();
+    if (times == Times || Stop) {
+        callback(times);
         return;
     }
     init();
@@ -220,21 +248,28 @@ function test_one(times, Times, callback) {
     setTimeout(() => { test_one(times + 1, Times, callback); }, 0);
 }
 function Test() {
+    if (on_test) { Stop = true; return; }
+    Stop = false;
     start();
     document.getElementById('back').setAttribute('disabled', '');
-    document.getElementById('tests').setAttribute('disabled', '');
     document.getElementById('auto').setAttribute('disabled', '');
     document.getElementById('step').setAttribute('disabled', '');
     document.getElementById('select').setAttribute('disabled', '');
+    document.getElementById('restart').setAttribute('disabled', '');
+    document.getElementById('score').setAttribute('disabled', '');
+    document.getElementById('tests').innerText = "Stop";
+    on_test = true;
     document.getElementById('main').style.visibility = 'hidden';
     document.getElementById('select').style.visibility = 'hidden';
     win_cnt = 0;
-    let Times = Math.round(10000 / (n * n));
+    let Times = Math.round(100000 / (n * n));
     End = true;
-    test_one(0, Times, () => {
+    test_one(0, Times, (T) => {
+        on_test = false;
+        document.getElementById('tests').innerText = "Test";
         document.getElementById('restart').removeAttribute('disabled');
         document.getElementById('select').style.visibility = 'visible';
-        document.getElementById('test').innerHTML = "rate:  " + Math.round(win_cnt / (Times / 100) * 10) / 10 + "%";
+        document.getElementById('test').innerHTML = "rate:  " + Math.round(win_cnt / (T / 100) * 10) / 10 + "% ( " + win_cnt + " / " + T + " )";
     });
 }
 function flip_score() {
