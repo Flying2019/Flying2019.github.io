@@ -5,7 +5,7 @@ import { alice_back, alice_init, alice_put, alice_score } from "./alice.js";
 let mp = new Array(), ban = new Array();
 let n = 7, End = false;
 const Color = ["gray", "#008800", "#0000aa", "#cc8800"];
-const char = ["\u00A0", "o", "x"];
+const char = ["\u00A0", "○", "●"];
 const BanCellBackground = ["white", "#a0ffa0", "#ffa0a0", "#eeee77"];
 const X = [-1, -1, -1, 0, 0, 1, 1, 1], Y = [-1, 0, 1, -1, 1, -1, 0, 1];
 let bob_put = function (mp, hist) { return alice_put(2, mp); };
@@ -36,7 +36,6 @@ function update_ban_cell() {
                 }
             }
     }
-    if (scr_update != undefined && scr_print == true) scr_update(mp, scr);
 }
 
 function check_end() {
@@ -64,6 +63,8 @@ function init() {
 }
 
 function print() {
+    if (on_test == false && scr_update != undefined && scr_print == true)
+        scr_update(mp, scr);
     const main = document.getElementById('main');
     main.textContent = '';
     for (let i = 0; i < n; i++) {
@@ -86,10 +87,13 @@ function print() {
                 cell.setAttribute('disabled', '');
             }
             if (scr_print && !mp[i][j] && !(ban[i][j] >> 1 & 1) && scr[i][j] != undefined) {
-                cell.style.backgroundColor = "orange";
-                if (scr[i][j] >= 1000) cell.innerText = '+';
-                else if (scr[i][j] <= -100) cell.innerText = '-';
+                if (!(ban[i][j] & 1)) {
+                    if (scr[i][j] < 0) cell.style.backgroundColor = "rgb(164 243 85)";
+                    else cell.style.backgroundColor = "orange";
+                }
+                if (scr[i][j] < 0) cell.innerText = -scr[i][j];
                 else cell.innerText = scr[i][j];
+                if (cell.innerText == 100) cell.innerText = "+";
             }
             else cell.innerText = char[mp[i][j]];
             p.appendChild(cell);
@@ -105,6 +109,7 @@ function end(winner_player) {
     update_ban_cell();
     print();
     document.getElementById('end').innerHTML = str;
+    document.getElementById('step').setAttribute('disabled', '');
     document.getElementById('main').setAttribute('disabled', '');
     document.getElementById('restart').removeAttribute('disabled');
     document.getElementById('auto').setAttribute('disabled', '');
@@ -172,15 +177,6 @@ function Back() {
     update_ban_cell();
     print();
 }
-function auto_run() {
-    while (!End) {
-        Bob();
-        if (End) break;
-        Alice();
-        update_ban_cell();
-        print();
-    }
-}
 
 function Step() {
     Bob();
@@ -199,7 +195,7 @@ function Auto_play(player, callback) {
     else Bob();
     update_ban_cell();
     print();
-    setTimeout(() => { Auto_play(3 - player, callback); }, 300);
+    setTimeout(() => { Auto_play(3 - player, callback); }, 10);
 }
 function Auto() {
     if (on_Auto) { Stop = true; return; }
@@ -213,8 +209,7 @@ function Auto() {
     Auto_play(1, () => {
         on_Auto = false;
         document.getElementById('auto').innerText = "Auto";
-        if(!End)
-        {
+        if (!End) {
             document.getElementById('back').removeAttribute('disabled', '');
             document.getElementById('step').removeAttribute('disabled', '');
             document.getElementById('tests').removeAttribute('disabled', '');
@@ -226,8 +221,8 @@ function Auto() {
 
 let win_cnt;
 function test_one(times, Times, callback) {
-    if (times == Times || Stop) {
-        callback(times);
+    if (Stop || times > Times) {
+        callback(times - 1);
         return;
     }
     init();
@@ -244,7 +239,8 @@ function test_one(times, Times, callback) {
             update_ban_cell();
         }
     }
-    document.getElementById('test').innerHTML = "Running  " + Math.round(times / (Times / 100)) + "% ...";
+    // console.log(win_cnt,times);
+    document.getElementById('test').innerHTML = "Running  " + times + " ...";
     setTimeout(() => { test_one(times + 1, Times, callback); }, 0);
 }
 function Test() {
@@ -262,9 +258,8 @@ function Test() {
     document.getElementById('main').style.visibility = 'hidden';
     document.getElementById('select').style.visibility = 'hidden';
     win_cnt = 0;
-    let Times = Math.round(100000 / (n * n));
     End = true;
-    test_one(0, Times, (T) => {
+    test_one(1, 10000, (T) => {
         on_test = false;
         document.getElementById('tests').innerText = "Test";
         document.getElementById('restart').removeAttribute('disabled');
@@ -282,6 +277,22 @@ function flip_score() {
     print();
 }
 
+function upload() {
+    let file = document.getElementById('filename').files[0];
+    if (!!file) {
+        let reader = new FileReader();
+        reader.readAsText(file);
+        reader.onload = function (e) {
+            console.log(e.target.result);
+            import('data:text/javascript,' + e.target.result).then(() => {
+                if (scr_update != undefined)
+                    document.getElementById('filesource').innerText = "Load Successfully",
+                        start();
+            });
+        }
+    }
+}
+
 function Init() {
     document.getElementById('back').addEventListener('click', () => { Back(); });
     document.getElementById('auto').addEventListener('click', () => { Auto(); });
@@ -289,8 +300,10 @@ function Init() {
     document.getElementById('tests').addEventListener('click', () => { Test(); });
     document.getElementById('restart').addEventListener('click', () => { start(); });
     document.getElementById('score').addEventListener('click', () => { flip_score(); });
+    document.getElementById('filename').addEventListener('change', () => { upload(); });
     document.getElementById('type').addEventListener('change', () => { start(); });
     start();
+    upload();
 }
 
 window.onload = Init();

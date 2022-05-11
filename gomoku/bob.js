@@ -1,7 +1,7 @@
 var _20 = new Array(15), _30 = new Array(15);
-const W0 = 300;
+const W0 = 500;
 const X = [1, -1, 0, 1], Y = [0, 1, 1, 1];
-var score = new Array();
+var score = new Array(), ban = new Array();
 
 function bob_rand(x) { return Math.floor(Math.random() * x); }
 function inside(n, x, y) { return x >= 0 && x < n && y >= 0 && y < n; }
@@ -33,11 +33,15 @@ function bob_test(player, mp, x, y) {
 function bob_init(n0) {
     // console.log(n0);
     score = new Array(n0);
-    for (let i = 0; i < n0; i++) score[i] = new Array(n0);
+    for (let i = 0; i < n0; i++) score[i] = new Array();
+    for (let i = 0; i < n0; i++) ban[i] = new Array();
+    for (let i = 0; i < n0; i++)
+        for (let j = 0; j < n0; j++) ban[i][j] = false;
     _20 = new Array(13), _30 = new Array(13);
     _20[0] = _30[0] = 1;
     for (let i = 1; i <= 12; i++) _20[i] = _20[i - 1] * 20;
     for (let i = 1; i <= 12; i++) _30[i] = _30[i - 1] * 30;
+    console.log(ban);
 }
 
 function bob_score(player, mp, x, y) {
@@ -48,68 +52,94 @@ function bob_score(player, mp, x, y) {
     if (v2 == undefined) return undefined;
     return v2 - v1;
 }
-const Approx = [undefined, 4, 2.5, 1.0, 1.0];
-const Min_Approx = 1.2;
+const Min_cnt = 12, All_Times = 100000;
+
 function dfs_put(player, mp, depth) {
     let n = mp.length;
-    let mn = 1e17;
-    let prep = new Array(), p0 = [-1, -1];
+    let mn = 1e9;
+    if (depth == 1) {
+        let Cnt = 100, emp = 0;
+        for (let i = 0; i < n; i++)
+            for (let j = 0; j < n; j++) if (!mp[i][j] && !ban[i][j]) ++emp;
+        Cnt = Math.min(Cnt, Math.round(All_Times / Math.pow(emp, 3)));
+        let prep = new Array();
+        if (Cnt < Min_cnt) {
+            for (let i = 0; i < n; i++)
+                for (let j = 0; j < n; j++) if (!mp[i][j] && !ban[i][j]) {
+                    let sc = bob_score(player, mp, i, j);
+                    if (sc != undefined) {
+                        if (sc < mn) mn = sc, prep = new Array();
+                        if (sc == mn) prep.push([i, j]);
+                    }
+                }
+            Cnt = 5;
+        }
+        else {
+            for (let i = 0; i < n; i++)
+                for (let j = 0; j < n; j++) if (!mp[i][j] && !ban[i][j]) prep.push([i, j]);
+        }
+        if (prep.length == 1) {
+            score[prep[0][0]][prep[0][1]] = 1;
+            return prep[0];
+        }
+        let best = [[-1, -1]], vl = -1;
+        for (let v of prep) {
+            mp[v[0]][v[1]] = player;
+            let win = 0;
+            for (let k = 0; k < Cnt; k++) {
+                win += !dfs_put(3 - player, mp, depth + 1);
+            }
+            mp[v[0]][v[1]] = 0;
+            score[v[0]][v[1]] = win / Cnt;
+            if (win > vl) vl = win, best = new Array();
+            if (win == vl) best.push(v);
+        }
+        return best[bob_rand(best.length)];
+    }
+    let prep = new Array();
     for (let i = 0; i < n; i++)
         for (let j = 0; j < n; j++) if (!mp[i][j]) {
             let sc = bob_score(player, mp, i, j);
             if (sc != undefined) {
-                prep.push([[i, j], sc]);
-                if (sc < mn) mn = sc, p0 = [i, j];
+                if (sc < mn) mn = sc, prep = new Array();
+                if (sc == mn) prep.push([i, j]);
             }
         }
-    // console.log(depth, prep.length);
-    if (prep.length == 0) return [[-1, -1], mn];
-    if (depth == 4) {
-        return p0;
-    }
-    let p = [-1, -1], vl = 1e17;
-    let tmp = new Array();
-    for (let v of prep)
-        if (v[1] <= mn * Approx[depth]) tmp.push(v);
-    prep = tmp;
-    for (let i = 1; i < prep.length; i++) {
-        let v = bob_rand(i + 1);
-        let t = prep[v]; prep[v] = prep[i]; prep[i] = t;
-    }
-    let c = 0;
-    for (let v of prep) {
-        if (v[1] > mn * Min_Approx) {
-            if (c >= 10) continue;
-            ++c;
-        }
-        mp[v[0][0]][v[0][1]] = player;
-        let w = dfs_put(3 - player, mp, depth + 1);
-        if (v[1] - w[1] < vl) vl = v[1] - w[1], p = v[0];
-        mp[v[0][0]][v[0][1]] = 0;
-        if (depth == 1)
-            score[v[0][0]][v[0][1]] = v[1] - w[1];
-    };
-    return [p, vl];
+    if (prep.length == 0) return 0;
+    let v = prep[bob_rand(prep.length)];
+    mp[v[0]][v[1]] = player;
+    let win = !dfs_put(3 - player, mp, depth + 1);
+    mp[v[0]][v[1]] = 0;
+    return win;
 }
 
 function bob_put(mp, hist) {
+    let n = mp.length;
+    for (let i = 0; i < n; i++)
+        for (let j = 0; j < n; j++) if (!mp[i][j]) {
+            mp[i][j] = 2;
+            if (bob_test(2, mp, i, j) == undefined) ban[i][j] = true;
+            mp[i][j] = 0;
+        }
+        else ban[i][j] = false;
     let p = dfs_put(2, mp, 1);
-    // console.log(p[0]);
-    return p[0];
+    // console.log(p);
+    return p;
 }
 
 function score_update(mp, scr) {
     let n = mp.length;
     for (let i = 0; i < n; i++)
         for (let j = 0; j < n; j++) score[i][j] = undefined;
-    let p = dfs_put(2, mp, 1);
+    let p = bob_put(mp);
     for (let i = 0; i < n; i++)
         for (let j = 0; j < n; j++) {
             if (!mp[i][j] && score[i][j] != undefined) {
-                scr[i][j] = Math.round(score[i][j] / 100);
+                scr[i][j] = Math.round(score[i][j] * 100);
             }
             else scr[i][j] = undefined;
         }
+    if (p[0] != -1) scr[p[0]][p[1]] = -scr[p[0]][p[1]];
 }
 
 setBobPut(bob_put, bob_init, score_update);
