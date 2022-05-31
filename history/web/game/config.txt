@@ -1,0 +1,3 @@
+Game_name:给朝野史;
+Game_key:114514sa;
+Title_img:map1.png;

@@ -1,0 +1,3 @@
+changeBg:map1.png -next;
+
+choose:背景介绍:intro.txt|第一章节:Chapter-1.txt|未完待续:more.txt; -next;
